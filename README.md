@@ -2,7 +2,7 @@
   <img src="public/app-icon.svg" alt="Yarvan mark" width="88" height="88">
   <h1>یاروان · Yarvan</h1>
   <p>تیم دستیارهای هوشمند، روی رایانه یا سرور خودت</p>
-  <p><a href="README.en.md">English</a> · <a href="docs/yarvan/guide-fa.md">راهنمای فارسی</a> · <a href="docs/yarvan/verification.md">آزمون‌ها</a> · <a href="docs/yarvan/publish-fa.md">انتشار در GitHub</a></p>
+  <p><a href="https://ghahremany.github.io/yarvan-agent/">صفحهٔ محصول</a> · <a href="README.en.md">English</a> · <a href="docs/yarvan/guide-fa.md">راهنمای فارسی</a> · <a href="docs/yarvan/verification.md">آزمون‌ها</a> · <a href="docs/yarvan/publish-fa.md">انتشار در GitHub</a></p>
 </div>
 
 **یاروان** از «یار» و «کاروان» ساخته شده است. این پروژه نسخهٔ مستقلی از بخش متن‌باز [OpenMausBot](https://github.com/milind-soni/OpenMausBot) است؛ نه محصول رسمی آن پروژه و نه یک سرویس ابری. برای هر بات می‌توانی مدل مناسب خودت را انتخاب کنی. فایل‌های دادهٔ برنامه روی میزبان خودت ذخیره می‌شوند. مدل ابری، تلگرام و اپ‌های متصل فقط با پیکربندی تو فعال می‌شوند و حسب قابلیت، دادهٔ لازم را دریافت می‌کنند.

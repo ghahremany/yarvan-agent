@@ -1,5 +1,7 @@
 # Yarvan · یاروان
 
+[Product page](https://ghahremany.github.io/yarvan-agent/?lang=en)
+
 Yarvan is an independent, Apache-2.0, local-first derivative of the open-source edition of OpenMausBot. Run a roster of agents on a computer you control and choose the model behind each bot. This is a source release, not a vendor-hosted service or a desktop installer. [فارسی](README.md)
 
 | Addition | How to use it |

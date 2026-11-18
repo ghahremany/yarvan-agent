@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="{{meta.description}}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="یاروان · Yarvan">
+  <meta property="og:title" content="{{meta.title}}">
+  <meta property="og:description" content="{{meta.description}}">
+  <meta property="og:url" content="{{homepage}}">
+  <meta property="og:image" content="{{homepage}}og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="{{homepage}}">
+  <link rel="icon" type="image/svg+xml" href="{{icon}}">
+  <title>{{meta.title}}</title>
+  <script>try{const t=localStorage.getItem('yarvan-product-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+  <style>{{!css}}</style>
+</head>
+<body id="top">
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gloss" x1="0" y1="0" x2=".9" y2="1" gradientUnits="objectBoundingBox">
+        <stop stop-color="#fff" stop-opacity=".45"/><stop offset=".48" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#071b27" stop-opacity=".46"/>
+      </linearGradient>
+    </defs>
+    <symbol id="mark" viewBox="0 0 48 48">
+      <rect width="48" height="48" rx="10.75" fill="#101a29"/>
+      <path d="M12.25 14 24 24l11.75-10M24 24v11.5" fill="none" stroke="#6be7cf" stroke-width="4" stroke-linecap="round"/>
+      <path d="M12.25 14h.01m23.49 0h.01M24 35.5h.01" fill="none" stroke="#f5dc98" stroke-width="7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="agent" viewBox="0 0 52 52">
+      <path d="M22 4a8 8 0 0 1 8 0l15.5 9A8 8 0 0 1 49 20v13a8 8 0 0 1-4 7l-15 9a8 8 0 0 1-8 0L7 40a8 8 0 0 1-4-7V20a8 8 0 0 1 4-7Z" fill="currentColor"/>
+      <path d="M22 4a8 8 0 0 1 8 0l15.5 9A8 8 0 0 1 49 20v13a8 8 0 0 1-4 7l-15 9a8 8 0 0 1-8 0L7 40a8 8 0 0 1-4-7V20a8 8 0 0 1 4-7Z" fill="url(#gloss)" stroke="#fff" stroke-opacity=".21" stroke-width=".9"/>
+      <path d="M16 19 26 27l10-8M26 27v9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 19h.01m19.99 0h.01M26 36h.01" stroke="#fff" stroke-width="5.7" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.86c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.03 1.54 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.39.1 2.64.64.7 1.02 1.6 1.02 2.69 0 3.85-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85l-.01 2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/>
+    </symbol>
+    <symbol id="moon" viewBox="0 0 24 24"><path d="M20.8 14.2A9 9 0 0 1 9.8 3.2a9 9 0 1 0 11 11Z"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6 5 19"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+    <symbol id="screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 17v4m-4 0h8"/></symbol>
+    <symbol id="terminal" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="m6 8 4 4-4 4m7 0h5"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s7-3.5 7-10.5v-6L12 2 5 5.5v6C5 18.5 12 22 12 22Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="sliders" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><path d="M9 4v4m6 2v4m-5 2v4" stroke-width="3"/></symbol>
+    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+    <symbol id="note" viewBox="0 0 24 24"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a2 2 0 0 1 2-2Zm7 0v5h5M8 12h8m-8 4h6"/></symbol>
+    <symbol id="comment" viewBox="0 0 24 24"><path d="M21 11.5a8 8 0 0 1-8 8H5l1.5-2.9A8 8 0 0 1 5 11.5a8 8 0 0 1 16 0Z"/><path d="M9 10.5h7m-7 4h4"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/></symbol>
+    <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="connect" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="m7.5 8 3.3 7.5m5.7-7.5-3.3 7.5"/></symbol>
+    <symbol id="send" viewBox="0 0 24 24"><path d="M22 2 9.5 14.5M22 2l-7.8 20-4.7-7.5L2 9.8 22 2Z"/></symbol>
+    <symbol id="cursor" viewBox="0 0 24 24"><path d="m5 3 14 10-7 1-3 7L5 3Z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="m9 3 10 6-2 2-2 1-2 6-3-2-4-2 4-5V5L9 3Zm2 13-5 6"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></symbol>
+    <symbol id="disk" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 15h18m-13 3h.01m4 0h.01"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  </svg>
+
+  <a class="skip" href="#main" data-i="ui.skip">{{ui.skip}}</a>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="{{ui.nav}}" data-label="ui.nav">
+      <a class="brand" href="#top" aria-label="{{ui.home}}" data-label="ui.home"><svg aria-hidden="true"><use href="#mark"/></svg><span data-i="ui.brand">{{ui.brand}}</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#quickstart" data-i="ui.start">{{ui.start}}</a>
+          <a href="#features" data-i="ui.features">{{ui.features}}</a>
+          <a href="#examples" data-i="ui.examples">{{ui.examples}}</a>
+          <a href="#faq" data-i="ui.faq">{{ui.faq}}</a>
+          <a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a>
+        </div>
+        <a class="pill nav-github" href="{{repo}}" dir="ltr"><svg class="icon filled" aria-hidden="true"><use href="#github"/></svg> GitHub</a>
+        <a class="pill solid nav-cta" href="#quickstart" data-i="ui.getStarted">{{ui.getStarted}}</a>
+        <button type="button" id="theme" class="pill icon-button" aria-label="{{ui.dark}}" data-label="ui.dark" hidden><svg class="icon moon" aria-hidden="true"><use href="#moon"/></svg><svg class="icon sun" aria-hidden="true"><use href="#sun"/></svg></button>
+        <a class="pill locale-button" id="language" href="?lang=en" lang="en" hreflang="en" aria-label="Read in English" hidden>EN</a>
+        <details class="nav-menu dropdown">
+          <summary class="pill icon-button" aria-label="{{ui.menu}}" data-label="ui.menu"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></summary>
+          <div class="drop-panel">
+            <a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a>
+            <a href="#examples" data-i="ui.examples">{{ui.examples}}</a><a href="#faq" data-i="ui.faq">{{ui.faq}}</a>
+            <a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a><a href="{{repo}}">GitHub</a>
+          </div>
+        </details>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div class="word-stage" aria-hidden="true" dir="ltr">
+        <div class="word-echo echo-top">Yarvan Yarvan Yarvan</div><div class="word-echo echo-bottom">Yarvan Yarvan Yarvan</div>
+        <span class="wordmark">Yarvan</span>
+        <span class="charm charm-one purple"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+        <span class="charm charm-two teal"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+        <span class="charm charm-three blue orbit"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+        <span class="charm charm-four green orbit"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+        <span class="charm charm-five peach"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+        <span class="charm charm-six pink"><svg aria-hidden="true"><use href="#agent"/></svg></span>
+      </div>
+      <div class="hero-copy">
+        <h1 id="hero-title"><span data-i="hero.before">{{hero.before}}</span> <em data-i="hero.accent">{{hero.accent}}</em> <span data-i="hero.after">{{hero.after}}</span></h1>
+        <div class="hero-actions">
+          <div class="split-button">
+            <a class="pill solid" href="{{repo}}/archive/refs/tags/v0.1.0.zip"><svg class="icon" aria-hidden="true"><use href="#download"/></svg><span data-i="ui.source">{{ui.source}}</span></a>
+            <details class="source-menu dropdown">
+              <summary class="pill solid" aria-label="{{ui.sourceOptions}}" data-label="ui.sourceOptions"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+              <div class="drop-panel"><a href="{{repo}}/archive/refs/tags/v0.1.0.zip" data-i="ui.zip">{{ui.zip}}</a><a href="{{repo}}/tree/v0.1.0" data-i="ui.tag">{{ui.tag}}</a><a href="{{repo}}" data-i="ui.repo">{{ui.repo}}</a></div>
+            </details>
+          </div>
+          <a class="pill hero-secondary" href="#quickstart" data-i="ui.start">{{ui.start}}</a>
+        </div>
+        <p data-i="hero.description">{{hero.description}}</p>
+      </div>
+      <figure class="showcase" id="preview" aria-label="{{showcase.label}}" data-label="showcase.label">
+        <div class="app-frame" dir="ltr">
+          <div class="app-side">
+            <div class="app-window"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="device-label"><svg class="icon" aria-hidden="true"><use href="#screen"/></svg><bdi data-i="showcase.device">{{showcase.device}}</bdi></span></div>
+            <div class="app-search" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#search"/></svg><span data-i="showcase.search">{{showcase.search}}</span></div>
+            <div class="app-section-name" data-i="showcase.roster">{{showcase.roster}}</div>
+            <div class="app-roster" role="group" aria-label="{{showcase.list}}" data-label="showcase.list">
+              <button class="app-member blue" type="button" data-chat="0" aria-pressed="true" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span dir="auto"><strong data-i="examples.0.name">{{examples.0.name}}</strong><small data-i="examples.0.hint">{{examples.0.hint}}</small></span></button>
+              <button class="app-member green" type="button" data-chat="1" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span dir="auto"><strong data-i="examples.1.name">{{examples.1.name}}</strong><small data-i="examples.1.hint">{{examples.1.hint}}</small></span></button>
+              <button class="app-member teal" type="button" data-chat="2" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span dir="auto"><strong data-i="examples.2.name">{{examples.2.name}}</strong><small data-i="examples.2.hint">{{examples.2.hint}}</small></span></button>
+              <button class="app-member peach" type="button" data-chat="3" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span dir="auto"><strong data-i="examples.3.name">{{examples.3.name}}</strong><small data-i="examples.3.hint">{{examples.3.hint}}</small></span></button>
+            </div>
+            <div class="app-side-footer"><span class="live-dot"></span><bdi data-i="strip.local">{{strip.local}}</bdi></div>
+          </div>
+          <div class="app-main" id="app-example" dir="rtl" data-mirror>
+            <div class="app-top">
+              <div class="app-title"><svg class="avatar blue" id="app-avatar" aria-hidden="true"><use href="#agent"/></svg><strong id="app-name">{{examples.0.name}}</strong><span class="app-slash" aria-hidden="true">/</span></div>
+              <div class="engine" dir="auto"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg><bdi id="app-model">{{examples.0.model}}</bdi></div>
+            </div>
+            <div class="app-chat">
+              <div class="chat-time" id="app-time">{{examples.0.time}}</div>
+              <div class="bubble bot" id="app-reply1">{{examples.0.reply1}}</div>
+              <div class="bubble person" id="app-ask">{{examples.0.ask}}</div>
+              <div class="bubble bot" id="app-reply2">{{examples.0.reply2}}</div>
+              <div class="chat-context"><svg class="icon" aria-hidden="true"><use href="#shield"/></svg><span id="app-extra">{{examples.0.extra}}</span></div>
+            </div>
+            <div class="app-tail"><button id="demo-next" class="app-next" type="button" hidden><span data-i="showcase.next">{{showcase.next}}</span><svg class="icon directional" aria-hidden="true"><use href="#arrow"/></svg></button></div>
+          </div>
+        </div>
+        <figcaption><span data-i="showcase.caption">{{showcase.caption}}</span> <a href="#examples" data-i="showcase.open">{{showcase.open}}</a></figcaption>
+      </figure>
+    </section>
+
+    <div class="wrap release-strip">
+      <div class="release-inner"><span class="small-label" data-i="strip.label">{{strip.label}}</span><div class="release-values">
+        <span><svg class="icon" aria-hidden="true"><use href="#screen"/></svg><bdi data-i="strip.local">{{strip.local}}</bdi></span>
+        <a href="{{repo}}/blob/main/LICENSE" dir="ltr"><svg class="icon" aria-hidden="true"><use href="#code"/></svg>Apache-2.0</a>
+        <span><svg class="icon" aria-hidden="true"><use href="#sliders"/></svg><bdi data-i="strip.model">{{strip.model}}</bdi></span>
+        <a href="{{repo}}/tree/v0.1.0"><svg class="icon" aria-hidden="true"><use href="#note"/></svg><bdi data-i="strip.release">{{strip.release}}</bdi><code dir="ltr">v0.1.0</code></a>
+      </div></div>
+    </div>
+
+    <section id="quickstart" class="band" aria-labelledby="quick-title">
+      <div class="wrap">
+        <div class="section-lead start-lead"><span class="eyebrow" data-i="quick.kicker">{{quick.kicker}}</span><h2 id="quick-title" data-i="quick.title">{{quick.title}}</h2><p data-i="quick.description">{{quick.description}}</p></div>
+        <ol class="steps">
+          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-stack" dir="ltr"><svg class="mini-mark"><use href="#mark"/></svg><div><strong>Yarvan</strong><small>v0.1.0 · ZIP</small></div><svg class="icon end-art"><use href="#download"/></svg></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">1</span><div><h3 data-i="quick.one.title">{{quick.one.title}}</h3><p data-i="quick.one.body">{{quick.one.body}}</p></div></div></li>
+          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-terminal" dir="ltr"><span class="window-dots"><i></i><i></i><i></i></span><code><b>›</b> pnpm dev:server<br><b>›</b> <i>127.0.0.1</i><span class="blink"> ▍</span></code></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">2</span><div><h3 data-i="quick.two.title">{{quick.two.title}}</h3><p data-i="quick.two.body">{{quick.two.body}}</p></div></div></li>
+          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-stack" dir="ltr"><svg class="avatar purple"><use href="#agent"/></svg><div><strong>Claude Code</strong><small>Text engine</small></div><svg class="icon end-art"><use href="#check"/></svg></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">3</span><div><h3 data-i="quick.three.title">{{quick.three.title}}</h3><p data-i="quick.three.body">{{quick.three.body}}</p></div></div></li>
+          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-dialog"><span></span><span></span><span><i></i><i></i><i></i></span></div><svg class="mini-chat avatar teal"><use href="#agent"/></svg></div><div class="step-copy"><span class="step-number" aria-hidden="true">4</span><div><h3 data-i="quick.four.title">{{quick.four.title}}</h3><p data-i="quick.four.body">{{quick.four.body}}</p></div></div></li>
+        </ol>
+        <div class="code-box">
+          <div class="code-top"><span><svg class="icon" aria-hidden="true"><use href="#terminal"/></svg><bdi data-i="quick.code">{{quick.code}}</bdi></span><button class="pill small-button" type="button" data-copy="server-code" data-i="ui.copy" hidden>{{ui.copy}}</button></div>
+          <pre id="server-code" dir="ltr"><code>git clone https://github.com/ghahremany/yarvan-agent.git
+cd yarvan-agent
+pnpm install --frozen-lockfile --ignore-scripts
+OMB_DATA_DIR="$HOME/.yarvan" OMB_DISABLE_ANNOUNCEMENTS=1 pnpm dev:server</code></pre>
+          <div class="code-top second"><span><svg class="icon" aria-hidden="true"><use href="#terminal"/></svg><bdi data-i="quick.terminalTwo">{{quick.terminalTwo}}</bdi></span><button class="pill small-button" type="button" data-copy="web-code" data-i="ui.copy" hidden>{{ui.copy}}</button></div>
+          <pre id="web-code" dir="ltr"><code>pnpm dev</code></pre>
+        </div>
+        <p class="quick-note"><span data-i="quick.url">{{quick.url}}</span> <code dir="ltr">http://127.0.0.1:5199</code> <span class="quick-source" data-i="quick.sourceOnly">{{quick.sourceOnly}}</span></p>
+        <a class="text-link" href="{{guide}}" data-doc><span data-i="ui.fullGuide">{{ui.fullGuide}}</span><svg class="icon directional" aria-hidden="true"><use href="#arrow"/></svg></a>
+      </div>
+    </section>
+
+    <section id="features" class="band" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-lead center"><h2 id="features-title" data-i="features.title">{{features.title}}</h2><p data-i="features.description">{{features.description}}</p></div>
+        <article class="feature-hero">
+          <div class="feature-big-copy"><h3 data-i="features.primary.title">{{features.primary.title}}</h3><p data-i="features.primary.body">{{features.primary.body}}</p><a class="text-link" href="{{guide}}" data-doc><span data-i="features.primary.link">{{features.primary.link}}</span><svg class="icon directional" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+          <div class="project-art" aria-hidden="true">
+            <div class="project-ui">
+              <div class="project-top"><span><svg class="icon" aria-hidden="true"><use href="#folder"/></svg><bdi data-i="features.primary.project">{{features.primary.project}}</bdi></span><span class="scope-pill"><svg class="icon" aria-hidden="true"><use href="#shield"/></svg><bdi data-i="features.primary.scope">{{features.primary.scope}}</bdi></span></div>
+              <div class="project-body">
+                <div class="project-side"><span class="project-active"><svg class="icon"><use href="#note"/></svg><bdi data-i="features.primary.notebook">{{features.primary.notebook}}</bdi></span><span><svg class="icon"><use href="#pin"/></svg><bdi data-i="features.primary.pins">{{features.primary.pins}}</bdi></span></div>
+                <div class="project-sheet"><div class="project-note"><strong data-i="features.primary.notebook">{{features.primary.notebook}}</strong><p data-i="features.primary.note">{{features.primary.note}}</p><div class="skeleton-line"></div><div class="skeleton-line short"></div></div><div class="review-row"><span data-i="features.primary.learned">{{features.primary.learned}}</span><small data-i="features.primary.review">{{features.primary.review}}</small></div></div>
+              </div>
+              <div class="project-foot"><div><span class="live-dot"></span><bdi data-i="features.primary.aside">{{features.primary.aside}}</bdi></div><div><svg class="icon"><use href="#lock"/></svg><bdi data-i="features.primary.other">{{features.primary.other}}</bdi></div></div>
+            </div>
+          </div>
+        </article>
+        <div class="feature-grid">
+          <article class="feature-card"><h3 data-i="features.hybrid.title">{{features.hybrid.title}}</h3><p data-i="features.hybrid.body">{{features.hybrid.body}}</p><div class="tile-art hybrid-art" aria-hidden="true"><span><svg class="icon"><use href="#search"/></svg><bdi data-i="features.hybrid.one">{{features.hybrid.one}}</bdi></span><span><svg class="icon"><use href="#connect"/></svg><bdi data-i="features.hybrid.two">{{features.hybrid.two}}</bdi></span><div><svg class="icon directional"><use href="#arrow"/></svg><strong data-i="features.hybrid.three">{{features.hybrid.three}}</strong></div></div></article>
+          <article class="feature-card"><h3 data-i="features.telegram.title">{{features.telegram.title}}</h3><p data-i="features.telegram.body">{{features.telegram.body}}</p><div class="tile-art telegram-art" aria-hidden="true"><div class="mini-chat-head"><svg class="icon"><use href="#send"/></svg><strong dir="ltr">Telegram DM</strong></div><span class="incoming" data-i="features.telegram.one">{{features.telegram.one}}</span><span class="outgoing" data-i="features.telegram.two">{{features.telegram.two}}</span><small><svg class="icon"><use href="#lock"/></svg><bdi data-i="features.telegram.three">{{features.telegram.three}}</bdi></small></div></article>
+          <article class="feature-card"><h3 data-i="features.teach.title">{{features.teach.title}}</h3><p data-i="features.teach.body">{{features.teach.body}}</p><div class="tile-art teach-art" aria-hidden="true"><div class="teach-top"><span class="window-dots"><i></i><i></i><i></i></span><code dir="ltr">Guest browser</code></div><div><svg class="icon"><use href="#cursor"/></svg><bdi data-i="features.teach.one">{{features.teach.one}}</bdi></div><div><svg class="icon"><use href="#shield"/></svg><bdi data-i="features.teach.two">{{features.teach.two}}</bdi></div><span class="draft" data-i="features.teach.three">{{features.teach.three}}</span></div></article>
+          <article class="feature-card"><h3 data-i="features.models.title">{{features.models.title}}</h3><p data-i="features.models.body">{{features.models.body}}</p><div class="tile-art models-art" aria-hidden="true"><small data-i="features.models.label">{{features.models.label}}</small><span dir="ltr"><i class="model-dot md-peach"></i>Claude Code<svg class="icon"><use href="#check"/></svg></span><span dir="ltr"><i class="model-dot md-blue"></i>Codex</span><span dir="ltr"><i class="model-dot md-mint"></i>Compatible chat API</span></div></article>
+          <article class="feature-card"><h3 data-i="features.pins.title">{{features.pins.title}}</h3><p data-i="features.pins.body">{{features.pins.body}}</p><div class="tile-art pins-art" aria-hidden="true"><span><svg class="icon"><use href="#pin"/></svg><bdi data-i="features.pins.one">{{features.pins.one}}</bdi></span><span class="memory-slip"><svg class="icon"><use href="#note"/></svg><bdi data-i="features.pins.two">{{features.pins.two}}</bdi><i></i><i></i></span></div></article>
+          <article class="feature-card"><h3 data-i="features.off.title">{{features.off.title}}</h3><p data-i="features.off.body">{{features.off.body}}</p><div class="tile-art off-art" aria-hidden="true"><svg class="off-agent avatar pink"><use href="#agent"/></svg><div><svg class="icon"><use href="#shield"/></svg><span data-i="features.off.label">{{features.off.label}}</span><i class="toggle-look"></i></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band how" aria-labelledby="how-title">
+      <div class="wrap"><div class="section-lead"><h2 id="how-title" data-i="how.title">{{how.title}}</h2></div>
+        <div class="how-grid">
+          <article><div class="how-art" dir="ltr" aria-hidden="true"><div class="tower-avatars"><svg class="avatar green"><use href="#agent"/></svg><svg class="avatar blue"><use href="#agent"/></svg><svg class="avatar peach"><use href="#agent"/></svg></div><div class="laptop"><div><code><b>›</b> Claude Code <i>✓</i><br><b>›</b> Codex <i>✓</i><br><b>›</b> Chat API <i>✓</i></code></div></div></div><h3 data-i="how.one.title">{{how.one.title}}</h3><p data-i="how.one.body">{{how.one.body}}</p></article>
+          <article><div class="how-art network-art" aria-hidden="true"><div class="network-node"><svg class="icon"><use href="#screen"/></svg><bdi data-i="how.app">{{how.app}}</bdi></div><div class="network-edge"><i></i><i></i><i></i></div><div class="network-node server-node"><svg class="icon"><use href="#terminal"/></svg><bdi data-i="how.service">{{how.service}}</bdi><code dir="ltr">127.0.0.1</code></div></div><h3 data-i="how.two.title">{{how.two.title}}</h3><p data-i="how.two.body">{{how.two.body}}</p></article>
+          <article><div class="how-art disk-art" aria-hidden="true"><div class="disk-docs"><svg class="icon"><use href="#note"/></svg><svg class="icon"><use href="#note"/></svg><svg class="icon"><use href="#lock"/></svg></div><div class="disk-drawer"><svg class="icon"><use href="#folder"/></svg><bdi data-i="how.disk">{{how.disk}}</bdi><code dir="ltr">~/.yarvan</code></div></div><h3 data-i="how.three.title">{{how.three.title}}</h3><p data-i="how.three.body">{{how.three.body}}</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples" class="use-section" aria-labelledby="use-title">
+      <div class="wrap"><div class="use-inner">
+        <div class="section-lead"><h2 id="use-title" data-i="use.title">{{use.title}}</h2><p data-i="use.description">{{use.description}}</p></div>
+        <div class="use-grid">
+          <div class="use-left">
+            <div class="scenario-buttons" role="group" aria-label="{{use.list}}" data-label="use.list">
+              <button class="pill blue" type="button" data-scenario="0" aria-pressed="true" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span data-i="examples.0.name">{{examples.0.name}}</span></button>
+              <button class="pill green" type="button" data-scenario="1" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span data-i="examples.1.name">{{examples.1.name}}</span></button>
+              <button class="pill teal" type="button" data-scenario="2" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span data-i="examples.2.name">{{examples.2.name}}</span></button>
+              <button class="pill peach" type="button" data-scenario="3" aria-pressed="false" disabled><svg class="avatar" aria-hidden="true"><use href="#agent"/></svg><span data-i="examples.3.name">{{examples.3.name}}</span></button>
+            </div>
+            <div class="scenario-detail"><h3 id="scenario-name">{{examples.0.name}}</h3><p id="scenario-desc">{{examples.0.desc}}</p><div class="scenario-meta"><span data-i="use.uses">{{use.uses}}</span><div><bdi id="scenario-tag1">{{examples.0.tag1}}</bdi><bdi id="scenario-tag2">{{examples.0.tag2}}</bdi></div></div></div>
+            <p class="demo-note" data-i="use.note">{{use.note}}</p>
+          </div>
+          <div class="phone-pad">
+            <div class="phone"><span class="phone-camera" aria-hidden="true"></span><div class="phone-head"><span class="phone-control" aria-hidden="true"><svg class="icon"><use href="#comment"/></svg></span><svg class="avatar blue" id="phone-avatar" aria-hidden="true"><use href="#agent"/></svg><span class="phone-control" aria-hidden="true"><svg class="icon"><use href="#screen"/></svg></span></div><strong class="phone-name" id="phone-name">{{examples.0.name}}</strong><small id="phone-scope">{{examples.0.scope}}</small><div class="phone-divider"></div><div class="phone-chat"><div class="bubble person" id="phone-ask">{{examples.0.ask}}</div><div class="bubble bot" id="phone-reply">{{examples.0.reply2}}</div><span class="phone-context" id="phone-extra">{{examples.0.extra}}</span></div><span class="phone-home" aria-hidden="true"></span></div>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section id="open-source" class="band oss" aria-labelledby="oss-title"><div class="wrap"><div class="oss-card"><div><span class="oss-glyph" aria-hidden="true"><svg class="icon filled"><use href="#github"/></svg></span><h2 id="oss-title" data-i="oss.title">{{oss.title}}</h2><p data-i="oss.body">{{oss.body}}</p><p class="oss-credit" data-i="oss.credit">{{oss.credit}}</p></div><div class="oss-actions"><a class="pill solid" href="{{repo}}" data-i="ui.repo">{{ui.repo}}</a><a class="pill" href="{{repo}}/issues/new" data-i="ui.issues">{{ui.issues}}</a></div></div></div></section>
+
+    <section id="faq" class="band faq" aria-labelledby="faq-title"><div class="wrap faq-grid">
+      <div class="section-lead"><span class="eyebrow" data-i="ui.faq">{{ui.faq}}</span><h2 id="faq-title" data-i="faq.title">{{faq.title}}</h2><a class="text-link" href="{{guide}}" data-doc><span data-i="ui.docs">{{ui.docs}}</span><svg class="icon directional" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <div class="faq-list">
+        <details name="faq" open><summary><span data-i="faq.q1">{{faq.q1}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary><p data-i="faq.a1">{{faq.a1}}</p></details>
+        <details name="faq"><summary><span data-i="faq.q2">{{faq.q2}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary><p data-i="faq.a2">{{faq.a2}}</p></details>
+        <details name="faq"><summary><span data-i="faq.q3">{{faq.q3}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary><p data-i="faq.a3">{{faq.a3}}</p></details>
+        <details name="faq"><summary><span data-i="faq.q4">{{faq.q4}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary><p data-i="faq.a4">{{faq.a4}}</p></details>
+        <details name="faq"><summary><span data-i="faq.q5">{{faq.q5}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary><p data-i="faq.a5">{{faq.a5}}</p></details>
+      </div>
+    </div></section>
+
+    <section class="band end-cta" aria-labelledby="end-title"><div class="wrap">
+      <div class="final-mark" aria-hidden="true"><svg class="avatar purple"><use href="#agent"/></svg><svg class="avatar green"><use href="#mark"/></svg><svg class="avatar blue"><use href="#agent"/></svg></div>
+      <h2 id="end-title" data-i="end.title">{{end.title}}</h2><p data-i="end.body">{{end.body}}</p>
+      <div class="hero-actions"><a class="pill solid" href="#quickstart" data-i="ui.getStarted">{{ui.getStarted}}</a><a class="pill" href="{{repo}}/archive/refs/tags/v0.1.0.zip" data-i="ui.source">{{ui.source}}</a></div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap">
+    <div class="footer-grid">
+      <div class="about"><a class="brand" href="#top" aria-label="{{ui.home}}" data-label="ui.home"><svg aria-hidden="true"><use href="#mark"/></svg><span data-i="ui.brand">{{ui.brand}}</span></a><p data-i="end.tagline">{{end.tagline}}</p></div>
+      <div><strong data-i="end.product">{{end.product}}</strong><a href="#features" data-i="ui.features">{{ui.features}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#examples" data-i="ui.examples">{{ui.examples}}</a></div>
+      <div><strong data-i="end.resources">{{end.resources}}</strong><a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a><a href="#faq" data-i="ui.faq">{{ui.faq}}</a><a href="{{repo}}/blob/main/LICENSE" data-i="ui.license">{{ui.license}}</a></div>
+      <div><strong data-i="end.related">{{end.related}}</strong><a href="{{repo}}">GitHub</a><a href="{{repo}}/blob/main/UPSTREAM.md" data-i="end.upstream">{{end.upstream}}</a><a href="{{repo}}/tree/v0.1.0" dir="ltr">v0.1.0</a></div>
+    </div>
+    <div class="footer-small"><span data-i="end.privacy">{{end.privacy}}</span><span dir="ltr">Yarvan · Apache-2.0</span></div>
+    <div class="footer-word" dir="ltr" aria-hidden="true">Yarvan</div>
+  </div></footer>
+  <div class="sr-only" id="live" role="status" aria-live="polite"></div>
+  <script type="application/json" id="copy-data">{{!messages}}</script>
+  <script>{{!script}}</script>
+</body>
+</html>
