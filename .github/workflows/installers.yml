@@ -100,7 +100,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Prepare Android SDK
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.1'
+        run: |
+          sdk="$RUNNER_TEMP/yarvan-android-sdk"
+          bash packaging/android/prepare-sdk.sh "$sdk"
+          printf 'ANDROID_SDK_ROOT=%s\nANDROID_HOME=%s\n' "$sdk" "$sdk" >> "$GITHUB_ENV"
       - name: Build and validate unsigned APK
         run: bash packaging/android/build.sh
       - name: Sign and verify with the Yarvan beta key

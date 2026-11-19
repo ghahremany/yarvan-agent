@@ -8,7 +8,7 @@ import type { PinnedMemorySnapshot } from "../../shared/pinned-memory";
 import { ChatMemoryDialog, pinFromMessage, ReplyMemory, type ChatMemoryEdit } from "./ChatMemory";
 import { MessageActions } from "./MessageActions";
 
-vi.mock("@/state/store", async (load) => ({ ...await load<typeof import("@/state/store")>(), useStoreDispatch: () => vi.fn() }));
+vi.mock("@/state/store-select", async (load) => ({ ...await load<typeof import("@/state/store-select")>(), useStoreDispatch: () => vi.fn() }));
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 let host: HTMLDivElement;
 let root: Root;
