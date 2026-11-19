@@ -48,6 +48,17 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=6144
         run: node packaging/desktop/build.mjs
       - if: runner.os == 'Linux'
+        name: Match a standard Ubuntu package parent on the ephemeral runner
+        shell: bash
+        run: |
+          test ! -L /opt
+          test "$(stat -c '%F %U:%G' /opt)" = 'directory root:root'
+          case "$(stat -c '%a' /opt)" in
+            755) ;;
+            775|777) sudo chmod 0755 /opt ;;
+            *) echo 'Unexpected hosted runner /opt mode'; exit 1 ;;
+          esac
+      - if: runner.os == 'Linux'
         name: Install the Debian package and boot its desktop
         shell: bash
         run: |
@@ -59,6 +70,7 @@ jobs:
           test "$(dpkg-deb -f "${packages[0]}" Architecture)" = amd64
           sudo apt-get install -y "./${packages[0]}"
           dbus-run-session -- xvfb-run -a node packaging/desktop/smoke.mjs /opt/Yarvan/yarvan
+          node scripts/smoke-browser-bundle.mjs --resources /opt/Yarvan/resources
           images=(release/yarvan/Yarvan-*-linux-x86_64.AppImage)
           test "${#images[@]}" = 1
           chmod +x "${images[0]}"

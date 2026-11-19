@@ -50,7 +50,7 @@ try {
   cpSync("public/app-icon-512.png", join(app, "electron", "resources", "yarvan-icon.png"));
   cpSync("src/locales", join(app, "src", "locales"), { recursive: true, filter: (source) => basename(source) !== "source-hashes.json" });
   writeFileSync(join(app, "package.json"), JSON.stringify({
-    name: "yarvan", productName: "Yarvan", version, type: "module", main: "electron/main.mjs",
+    name: "yarvan", productName: "Yarvan", version, type: "module", main: "electron/yarvan-entry.mjs",
     description: "A local-first team of AI agents with scoped memory.", license: "Apache-2.0",
     author: { name: "Yarvan contributors", email: "ghahremany@users.noreply.github.com" },
     homepage: "https://ghahremany.github.io/yarvan-agent/",
@@ -79,6 +79,11 @@ try {
       await verifyBrowserBundle(join(resources, "browser-engine"), platformTarget);
       await verifyDuckdbTree(join(resources, "duckdb"), process.platform, "x64",
         pinnedDuckdbVersion(root), pinnedResvgVersion(root), pinnedOnePasswordVersion(root));
+      // Fail early, before the Windows installer compression, if the actual
+      // packed app cannot start. The CI job also runs the installed copy.
+      if (process.platform === "win32" && process.env.CI === "true") {
+        node(["packaging/desktop/smoke.mjs", join(appOutDir, "Yarvan.exe")]);
+      }
     },
     win: { icon: "public/app-icon-512.png" },
     nsis: { oneClick: false, perMachine: false, allowToChangeInstallationDirectory: true, runAfterFinish: false,

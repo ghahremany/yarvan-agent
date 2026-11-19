@@ -14,8 +14,12 @@ for (const name of ["app-update.yml", "server/enterprise", "cua-linux-x64", "cua
 const { version } = JSON.parse(readFileSync(new URL("../version.json", import.meta.url), "utf8"));
 const root = mkdtempSync(join(tmpdir(), "yarvan-desktop-smoke-"));
 const home = join(root, "home");
+const profile = join(root, "electron-profile");
+const chromiumLog = join(root, "chromium.log");
 const report = join(root, "report.json");
-mkdirSync(home);
+for (const path of [home, join(home, "AppData", "Roaming"), join(home, "AppData", "Local"), profile]) {
+  mkdirSync(path, { recursive: true });
+}
 const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !/^(?:OMB_|OGB_|YARVAN_|ELECTRON_|NODE_OPTIONS)/.test(key)));
 Object.assign(env, {
   HOME: home, USERPROFILE: home, APPDATA: join(home, "AppData", "Roaming"), LOCALAPPDATA: join(home, "AppData", "Local"),
@@ -23,7 +27,7 @@ Object.assign(env, {
   OMB_SMOKE_TEST: "1", OMB_DISABLE_ANNOUNCEMENTS: "1", OMB_DISABLE_MODEL_MANIFEST_FETCH: "1", OMB_DISABLE_MODEL_CATALOG_FETCH: "1",
   YARVAN_SMOKE_REPORT: report,
 });
-const child = spawn(executable, ["--user-data-dir=" + join(root, "electron-profile"), "--disable-gpu"], {
+const child = spawn(executable, ["--user-data-dir=" + profile, "--disable-gpu", "--enable-logging=file", "--log-file=" + chromiumLog], {
   cwd: root, env, detached: process.platform === "linux", stdio: ["ignore", "pipe", "pipe"],
 });
 let logs = "";
@@ -33,8 +37,13 @@ child.stderr.on("data", tail);
 const stopped = once(child, "exit");
 stopped.catch(() => {});
 try {
-  for (let i = 0; i < 240 && !existsSync(report) && child.exitCode === null; i++) await delay(250);
-  assert(existsSync(report), `Packaged renderer did not start.\n${logs}`);
+  for (let i = 0; i < 280 && !existsSync(report) && child.exitCode === null && !existsSync(report + ".error"); i++) await delay(250);
+  if (!existsSync(report)) {
+    for (const file of [report + ".error", join(profile, "logs", "server.log"), join(profile, "logs", "desktop-crashes.log"), chromiumLog]) {
+      try { logs += `\n${file}:\n${readFileSync(file, "utf8").slice(-4000)}`; } catch {}
+    }
+  }
+  assert(existsSync(report), `Packaged renderer did not start (process exit ${child.exitCode}).\n${logs}`);
   const data = JSON.parse(readFileSync(report, "utf8"));
   assert.deepEqual(data.release, { edition: "oss", name: "Yarvan", rendered: true, version });
   assert.match(data.location, /^http:\/\/127\.0\.0\.1:\d+\/$/);

@@ -342,7 +342,7 @@ const serverSupervisor = createServerSupervisor({
 
 function desktopDataDir() {
   // An empty OMB_DATA_DIR falls back here too; server/config.ts would not, so the child gets this path.
-  return process.env.OMB_DATA_DIR || path.join(app.getPath("home"), DATA_BASENAME);
+  return process.env.OMB_DATA_DIR || path.join(YARVAN_DESKTOP ? os.homedir() : app.getPath("home"), DATA_BASENAME);
 }
 
 async function stopUtilityServer(proc, timeoutMs = UTILITY_SERVER_STOP_TIMEOUT_MS) {
@@ -1553,7 +1553,7 @@ let rememberedHome = null;
 
 function acquireDataDirLeaseFor(dir) {
   return dir === desktopDataDir()
-    ? acquireDataDirLease(dir, { t: nativeT, legacyDataDir: path.join(app.getPath("home"), ".opengrokbot") })
+    ? acquireDataDirLease(dir, { t: nativeT, ...legacyDataOption() })
     : acquireDataDirLease(dir, { t: nativeT });
 }
 
@@ -2176,7 +2176,9 @@ function createWindow({ deferNavigation = false } = {}) {
         }
         console.log(`[smoke] renderer-ready ${JSON.stringify(result)}`);
       } catch (error) {
-        console.error(`[smoke] renderer-failed ${error?.stack ?? error}`);
+        const message = `[smoke] renderer-failed ${error?.stack ?? error}`;
+        slog(message);
+        console.error(message);
       } finally {
         if (process.env.OMB_SMOKE_KEEP_OPEN !== "1") win.close();
       }
@@ -2831,7 +2833,7 @@ app.whenReady().then(async () => {
   }
   hiddenStart = loginItem.startedHidden() || reopenedOutOfSight();
   startupScreen = hiddenStart ? null : createStartupScreen({
-    BrowserWindow, iconPath: APP_ICON, isQuitting: () => desktopShutdownStarted, t: nativeT, lang: nativeText.intlTag(),
+    BrowserWindow, iconPath: APP_ICON, name: app.getName(), isQuitting: () => desktopShutdownStarted, t: nativeT, lang: nativeText.intlTag(),
     onQuit: () => app.quit(),
     onHide: desktopTray ? (win) => desktopTray.hide(win) : undefined,
     isHidden: () => desktopTray?.isHidden() ?? false,
@@ -3072,6 +3074,9 @@ app.whenReady().then(async () => {
     if (desktopTray?.show()) return;
     if (appWindows().length === 0) openWindowForLink();
   });
+}).catch((error) => {
+  slog(`desktop startup failed: ${error?.stack ?? error}`);
+  throw error;
 }).finally(() => allWindowsClosedQuit.settleStartup());
 
 const allWindowsClosedQuit = createAllWindowsClosedQuit({

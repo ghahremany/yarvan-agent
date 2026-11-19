@@ -24,12 +24,17 @@ try:
         raise ValueError("invalid signing input")
 except (KeyError, TypeError, ValueError):
     raise SystemExit("Invalid Android signing secret format.") from None
-root = Path(sys.argv[1]); (root / 'signing.p12').write_bytes(key); (root / 'password').write_text(password + '\n')
+root = Path(sys.argv[1])
+(root / 'signing.p12').write_bytes(key)
+# apksigner consumes a separate line for each password read from a file source.
+# PKCS#12 uses the same password for both but the file readers must be distinct.
+for kind in ('store', 'key'):
+    (root / (kind + '-pass')).write_text(password + '\n')
 PY
 unset YARVAN_ANDROID_SIGNING
 out="release/yarvan/Yarvan-$version-android.apk"
 "$tools/apksigner" sign --ks "$work/signing.p12" --ks-type PKCS12 --ks-key-alias yarvan-beta \
-  --ks-pass "file:$work/password" --key-pass "file:$work/password" \
+  --ks-pass "file:$work/store-pass" --key-pass "file:$work/key-pass" \
   --v1-signing-enabled false --v2-signing-enabled true --v3-signing-enabled true --v4-signing-enabled false \
   --out "$out" "release/yarvan/Yarvan-$version-android.unsigned.apk"
 "$tools/apksigner" verify --verbose --print-certs "$out" > "$work/signature.txt"

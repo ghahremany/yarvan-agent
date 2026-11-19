@@ -8,10 +8,13 @@ tag="v$version"
 base="Yarvan-$version"
 artifacts=("$base-windows-x64-setup.exe" "$base-linux-amd64.deb" "$base-linux-x86_64.AppImage" "$base-android.apk" Yarvan-Android-Certificate.txt)
 (cd release/yarvan && for file in "${artifacts[@]}"; do test -s "$file"; done && sha256sum "${artifacts[@]}" > SHA256SUMS.txt)
-if git ls-remote --exit-code --tags "https://github.com/$GITHUB_REPOSITORY.git" "refs/tags/$tag" >/dev/null; then
-  echo "Tag $tag already exists; not replacing a release." >&2
-  exit 1
-fi
+status=0
+GIT_TERMINAL_PROMPT=0 git ls-remote --exit-code --tags "https://github.com/$GITHUB_REPOSITORY.git" "refs/tags/$tag" >/dev/null || status=$?
+case $status in
+  0) echo "Tag $tag already exists; not replacing a release." >&2; exit 1 ;;
+  2) ;; # No matching tag.
+  *) echo 'Could not verify that the release tag is new.' >&2; exit 1 ;;
+esac
 asset_paths=()
 for file in "${artifacts[@]}" SHA256SUMS.txt; do asset_paths+=("release/yarvan/$file"); done
 gh release create "$tag" "${asset_paths[@]}" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --latest=false \
