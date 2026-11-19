@@ -50,7 +50,7 @@ export default defineConfig({
     rollupOptions: { input: { index: page("./index.html"), rail: page("./rail.html") } },
   },
   define: {
-    __APP_VERSION__: JSON.stringify(version),
+    __APP_VERSION__: JSON.stringify(process.env.YARVAN_PACKAGE_VERSION || version),
   },
   test: {
     environment: "node",

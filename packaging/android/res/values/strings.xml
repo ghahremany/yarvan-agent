@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yarvan Companion</string>
+    <string name="badge">COMPANION · BETA</string>
+    <string name="title">Yarvan on your phone</string>
+    <string name="intro">Connect to Yarvan running on your computer or server. The agents do not run on this phone.</string>
+    <string name="address">Workspace address or pairing link</string>
+    <string name="hint">https://your-yarvan.example</string>
+    <string name="connect">Open workspace</string>
+    <string name="settings">Connection</string>
+    <string name="forget">Forget workspace on this phone</string>
+    <string name="confirm_forget">Clear this app’s saved address, session cookies and website data? Do not forget to revoke a lost device from the host.</string>
+    <string name="forget_ok">Forget</string>
+    <string name="safe">Only secure HTTPS addresses are allowed. Keep your host running. Use a browser pairing link, not a native relay QR. Do not paste a link you received from a stranger.</string>
+    <string name="invalid_url">Enter a full HTTPS workspace address with no username or password.</string>
+    <string name="external_blocked">A page outside your workspace was blocked. Open any external service separately in your browser.</string>
+    <string name="tls_error">The HTTPS certificate is not trusted by Android. The app did not connect.</string>
+    <string name="network_error">Could not load this workspace. Check its address, HTTPS certificate and your connection.</string>
+    <string name="offline_notice">This app does not work offline. Keep Android System WebView updated.</string>
+</resources>

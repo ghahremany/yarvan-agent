@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">همراه یاروان</string>
+    <string name="badge">همراه · آزمایشی</string>
+    <string name="title">یاروان روی گوشی تو</string>
+    <string name="intro">به یاروانِ در حال اجرا روی رایانه یا سرور خودت وصل شو. عامل‌ها روی این گوشی اجرا نمی‌شوند.</string>
+    <string name="address">نشانی فضای کار یا پیوند جفت‌سازی</string>
+    <string name="hint">https://your-yarvan.example</string>
+    <string name="connect">باز کردن فضای کار</string>
+    <string name="settings">اتصال</string>
+    <string name="forget">پاک کردن اتصال از گوشی</string>
+    <string name="confirm_forget">نشانی و داده‌های وب و نشست ذخیره‌شده در این برنامه پاک شوند؟ اگر دستگاه را گم کرده‌ای، دسترسی آن را از میزبان هم لغو کن.</string>
+    <string name="forget_ok">پاک کن</string>
+    <string name="safe">فقط نشانی امن HTTPS پذیرفته می‌شود. میزبان را روشن نگه دار و از روش جفت‌سازی مرورگر، نه QR مخصوص پُل بومی، استفاده کن.</string>
+    <string name="invalid_url">یک نشانی کامل HTTPS بدون نام کاربری یا گذرواژه وارد کن.</string>
+    <string name="external_blocked">صفحه‌ای بیرون از فضای کار مسدود شد. سرویس‌های دیگر را جداگانه در مرورگر باز کن.</string>
+    <string name="tls_error">گواهی HTTPS مورد اعتماد اندروید نیست؛ اتصال برقرار نشد.</string>
+    <string name="network_error">فضای کار باز نشد. نشانی، گواهی HTTPS و شبکه را بررسی کن.</string>
+    <string name="offline_notice">برنامه آفلاین نیست. Android System WebView را به‌روز نگه دار.</string>
+</resources>

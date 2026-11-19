@@ -1,0 +1,9 @@
+# Yarvan installer builds
+
+`.github/workflows/installers.yml` dispatches on trusted `main` only. It prepares an independent Electron package on Windows x64 and Ubuntu 24.04 x64, and a Java Android companion for Android 8+. It does not use the upstream publisher or desktop driver installers. It creates a **new prerelease** only when `publish_prerelease` is selected and the validation jobs have succeeded. Existing tags/assets are not replaced.
+
+Desktop builds use Node 24 and pinned pnpm 10.33.0: `pnpm install --frozen-lockfile --ignore-scripts`, then `node packaging/desktop/build.mjs` on the target OS. The isolated staging app avoids inheriting `electron-builder.yml` from OpenMausBot. The community installer embeds the OSS server, React renderer, browser bundle, DuckDB resources and license notices. It uses `.yarvan`, a separate OS app identity and no automatic update feed. This does not certify live providers, native CUA, or third-party hosted services. `packaging/desktop/smoke.mjs` validates a fresh installed app.
+
+Android uses JDK 17+, Android 35 and Build Tools 35.0.1 (`bash packaging/android/build.sh`). There is no Gradle or mobile cloud service. The signed beta requires the existing `YARVAN_ANDROID_SIGNING` Actions secret; its public fingerprint is pinned in `android/signing-cert.sha256`. Store a secure backup of the same PKCS#12 identity under maintainer control if moving the signing setup. Do not commit/export the secret or replace it with a debug key; Android rejects an in-place upgrade signed by a different certificate. Increment `androidVersionCode` for each new Android release. Certificate trust of the connected workspace is enforced by the OS.
+
+Set a new version in `version.json` and add a release note under `docs/yarvan/releases/` before dispatching a new release. See [installation in Persian](../docs/yarvan/install-fa.md).

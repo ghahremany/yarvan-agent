@@ -132,9 +132,14 @@ const { MIN_BOUNDS, normalizeUnreadCount, resolveWindowState } = require("./wind
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // vite binds IPv4; a bare "localhost" can resolve to ::1.
+// The public Yarvan installers never register upstream update feeds, protocol handlers or default data paths.
+const YARVAN_DESKTOP = app.isPackaged && app.getName() === "Yarvan";
+const DESKTOP_ID = YARVAN_DESKTOP ? "io.github.ghahremany.yarvan" : "com.openmausbot.app";
+const DATA_BASENAME = YARVAN_DESKTOP ? ".yarvan" : ".openmausbot";
+const legacyDataOption = () => YARVAN_DESKTOP ? {} : { legacyDataDir: path.join(app.getPath("home"), ".opengrokbot") };
 const DEV_URL = process.env.ELECTRON_START_URL ?? "http://127.0.0.1:5199";
 let SERVER_PORT = 8799;
-const APP_ICON = path.join(__dirname, "resources/app-icon.png");
+const APP_ICON = path.join(__dirname, "resources", YARVAN_DESKTOP ? "yarvan-icon.png" : "app-icon.png");
 let desktopViewerWindow = null;
 let desktopViewerOwner = null;
 let desktopViewerContextId = null;
@@ -181,10 +186,11 @@ function applyUnreadBadge(win = mainWindow) {
 // A launch with --disable-gpu (a desktop entry or a user workaround) renders on the CPU too.
 const linuxSoftwareRendering = process.platform === "linux" && (linuxDisablesGpu() || app.commandLine.hasSwitch("disable-gpu"));
 if (linuxSoftwareRendering) app.disableHardwareAcceleration();
-if (process.platform === "linux") app.setDesktopName("com.openmausbot.app.desktop");
+if (process.platform === "linux") app.setDesktopName(`${DESKTOP_ID}.desktop`);
+if (process.platform === "win32" && YARVAN_DESKTOP) app.setAppUserModelId(DESKTOP_ID);
 
 if (!app.requestSingleInstanceLock()) {
-  console.log("[desktop] OpenMausBot is already running — focusing that window");
+  console.log(`[desktop] ${app.getName()} is already running — focusing that window`);
   process.exit(0);
 }
 
@@ -336,7 +342,7 @@ const serverSupervisor = createServerSupervisor({
 
 function desktopDataDir() {
   // An empty OMB_DATA_DIR falls back here too; server/config.ts would not, so the child gets this path.
-  return process.env.OMB_DATA_DIR || path.join(app.getPath("home"), ".openmausbot");
+  return process.env.OMB_DATA_DIR || path.join(app.getPath("home"), DATA_BASENAME);
 }
 
 async function stopUtilityServer(proc, timeoutMs = UTILITY_SERVER_STOP_TIMEOUT_MS) {
@@ -1120,6 +1126,7 @@ async function startServerOn(port, dataDir = runningDataDir ?? startupEnvironmen
     OMB_SKILLS_DIR: path.join(process.resourcesPath, "skills"),
     OMB_PORT: String(port),
     OMB_APP_VERSION: app.getVersion(),
+    ...(YARVAN_DESKTOP ? { OMB_DISABLE_ANNOUNCEMENTS: "1" } : {}),
     OMB_USER_DATA: app.getPath("userData"),
     ...(secureCredentials.composioApiKey
       ? { COMPOSIO_API_KEY: secureCredentials.composioApiKey }
@@ -1672,7 +1679,7 @@ function createLocalEnvironment(name, dataDir) {
       ? name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
       : "";
     if (typeof name !== "string" || !name.trim()) return { ok: false, error: "name", state };
-    candidateDir = path.join(os.homedir(), `.openmausbot-${slug && slug !== "clean" && slug !== "profiles" ? slug : randomUUID().slice(0, 8)}`);
+    candidateDir = path.join(os.homedir(), `${DATA_BASENAME}-${slug && slug !== "clean" && slug !== "profiles" ? slug : randomUUID().slice(0, 8)}`);
   } else {
     candidateDir = typeof dataDir === "string" ? dataDir.trim() : "";
     if (
@@ -1892,7 +1899,7 @@ async function forgetEnvironment(id, purge = false, confirmed = false) {
     const resolvedCanon = canonical(resolved);
     const rootCanon = canonical(root);
     if (runningDataDir && canonical(runningDataDir) === resolvedCanon) return { ok: false, error: "active" };
-    if (path.basename(resolved).startsWith(".openmausbot") && resolvedCanon !== rootCanon && !resolvedCanon.startsWith(rootCanon + path.sep)) {
+    if ((path.basename(resolved).startsWith(DATA_BASENAME) || path.basename(resolved).startsWith(".openmausbot")) && resolvedCanon !== rootCanon && !resolvedCanon.startsWith(rootCanon + path.sep)) {
       try {
         await fs.promises.rm(resolved, { recursive: true, force: true });
       } catch (error) {
@@ -2107,6 +2114,23 @@ function createWindow({ deferNavigation = false } = {}) {
             };
           })()
         `);
+        if (YARVAN_DESKTOP) {
+          result.release = await win.webContents.executeJavaScript(`(async () => {
+            const get = async (path) => {
+              const response = await fetch(path);
+              if (!response.ok) throw new Error(path + " failed: " + response.status);
+              return response.json();
+            };
+            const [edition, branding] = await Promise.all([get("/api/edition"), get("/api/brand")]);
+            for (let attempt = 0; attempt < 80; attempt++) {
+              if (document.querySelector("#root")?.textContent?.trim()) break;
+              await new Promise(resolve => setTimeout(resolve, 250));
+            }
+            return { edition: edition.edition, name: branding.brand.name,
+              rendered: Boolean(document.querySelector("#root")?.textContent?.trim()) };
+          })()`);
+          result.release.version = app.getVersion();
+        }
         const expectedLocation = `http://127.0.0.1:${SERVER_PORT}/`;
         if (result.location !== expectedLocation) {
           throw new Error(
@@ -2147,6 +2171,9 @@ function createWindow({ deferNavigation = false } = {}) {
         }
         result.hardwareAccelerationEnabled = app.isHardwareAccelerationEnabled();
         result.displayMediaRequests = displayMediaRequestCount;
+        if (YARVAN_DESKTOP && process.env.YARVAN_SMOKE_REPORT) {
+          fs.writeFileSync(process.env.YARVAN_SMOKE_REPORT, JSON.stringify(result), { flag: "wx", mode: 0o600 });
+        }
         console.log(`[smoke] renderer-ready ${JSON.stringify(result)}`);
       } catch (error) {
         console.error(`[smoke] renderer-failed ${error?.stack ?? error}`);
@@ -2834,7 +2861,7 @@ app.whenReady().then(async () => {
     try {
       // Acquire before either plaintext credential migration touches config.json.
       desktopDataDirLease = acquireDataDirLease(bootDataDir, { t: nativeT,
-        legacyDataDir: path.join(app.getPath("home"), ".opengrokbot"),
+        ...legacyDataOption(),
       });
       runningDataDir = bootDataDir;
     } catch (error) {
@@ -2848,7 +2875,7 @@ app.whenReady().then(async () => {
   }
   installServerSessions({ app, defaultSession: session.defaultSession, serverPort: () => SERVER_PORT,
     ownerToken: () => (app.isPackaged && serverReady ? desktopMutationToken : null) });
-  if (app.isPackaged) app.setAsDefaultProtocolClient("openmausbot");
+  if (app.isPackaged && !YARVAN_DESKTOP) app.setAsDefaultProtocolClient("openmausbot");
   if (process.platform === "darwin") app.dock.setIcon(APP_ICON);
   secureCredentials = await loadSecureCredentials();
   // An orphaned third-party key with no clear handler left: drop it rather than keep it at rest.
@@ -2971,7 +2998,7 @@ app.whenReady().then(async () => {
       desktopDataDirLease = null;
       try {
         desktopDataDirLease = acquireDataDirLease(desktopDataDir(), { t: nativeT,
-          legacyDataDir: path.join(app.getPath("home"), ".opengrokbot"),
+          ...legacyDataOption(),
         });
         runningDataDir = desktopDataDir();
       } catch (error) {
@@ -3034,7 +3061,8 @@ app.whenReady().then(async () => {
     slog("skipping connected-apps registration: the credential store was unreadable this launch");
   }
   checkInManagedComposio();
-  startUpdater(quietSignals({ powerMonitor, window: () => mainWindow, lastInput: oneHome.lastInput, local: localServerRequest, place: () => homeWindow.placeOrigin(), cloudFetch: (...args) => session.defaultSession.fetch(...args), asleep: origin => homeWindow.asleepAt(origin), busy: () => ((oneHome.oneHome.busy() || ownHome?.busy()) && "move") || (computerSharing?.busy() && "lending") || (talk.busy() && "talk") || (companyBackupController || companyRestoreCommitting ? "backup" : null) })); alwaysOnHome.start(powerMonitor);
+  if (!YARVAN_DESKTOP) startUpdater(quietSignals({ powerMonitor, window: () => mainWindow, lastInput: oneHome.lastInput, local: localServerRequest, place: () => homeWindow.placeOrigin(), cloudFetch: (...args) => session.defaultSession.fetch(...args), asleep: origin => homeWindow.asleepAt(origin), busy: () => ((oneHome.oneHome.busy() || ownHome?.busy()) && "move") || (computerSharing?.busy() && "lending") || (talk.busy() && "talk") || (companyBackupController || companyRestoreCommitting ? "backup" : null) }));
+  alwaysOnHome.start(powerMonitor);
   refreshApplicationMenu();
   openWindowForLink = () => {
     if (!mainWindow || mainWindow.isDestroyed()) createWindow({ deferNavigation: homeWindow.current().kind !== "computer" });

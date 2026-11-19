@@ -1,0 +1,138 @@
+name: Build Yarvan installers
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_prerelease:
+        description: Publish the verified assets to a new GitHub prerelease
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yarvan-installer-builds
+  cancel-in-progress: false
+
+jobs:
+  desktop:
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            target: windows-x64
+          - os: ubuntu-24.04
+            target: linux-x64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ff378ebe6b225b0680b81c1ad4498ae0d1d3a5e3 # v6.0.10
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: pnpm
+      - if: runner.os == 'Linux'
+        name: Desktop smoke dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xauth dbus-x11 squashfs-tools
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Build independent Yarvan package
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: node packaging/desktop/build.mjs
+      - if: runner.os == 'Linux'
+        name: Install the Debian package and boot its desktop
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          packages=(release/yarvan/Yarvan-*-linux-amd64.deb)
+          test "${#packages[@]}" = 1
+          test "$(dpkg-deb -f "${packages[0]}" Package)" = yarvan
+          test "$(dpkg-deb -f "${packages[0]}" Architecture)" = amd64
+          sudo apt-get install -y "./${packages[0]}"
+          dbus-run-session -- xvfb-run -a node packaging/desktop/smoke.mjs /opt/Yarvan/yarvan
+          images=(release/yarvan/Yarvan-*-linux-x86_64.AppImage)
+          test "${#images[@]}" = 1
+          chmod +x "${images[0]}"
+          image="$(realpath "${images[0]}")"
+          (cd "$RUNNER_TEMP" && "$image" --appimage-extract resources/app.asar >/dev/null && test -s squashfs-root/resources/app.asar)
+      - if: runner.os == 'Windows'
+        name: Run the Windows installer and boot the installed desktop
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = @(Get-ChildItem release\yarvan -Filter Yarvan-*-windows-x64-setup.exe)
+          if ($asset.Count -ne 1) { throw 'Expected one Windows installer' }
+          $install = Join-Path $env:RUNNER_TEMP 'YarvanInstalled'
+          $proc = Start-Process -FilePath $asset[0].FullName -ArgumentList '/S', "/D=$install" -Wait -PassThru
+          if ($proc.ExitCode -ne 0) { throw "NSIS failed: $($proc.ExitCode)" }
+          & node packaging/desktop/smoke.mjs (Join-Path $install 'Yarvan.exe')
+          if ($LASTEXITCODE -ne 0) { throw "Installed desktop smoke failed: $LASTEXITCODE" }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: installers-${{ matrix.target }}
+          path: |
+            release/yarvan/Yarvan-*-windows-x64-setup.exe
+            release/yarvan/Yarvan-*-linux-amd64.deb
+            release/yarvan/Yarvan-*-linux-x86_64.AppImage
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
+
+  android:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare Android SDK
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.1'
+      - name: Build and validate unsigned APK
+        run: bash packaging/android/build.sh
+      - name: Sign and verify with the Yarvan beta key
+        env:
+          YARVAN_ANDROID_SIGNING: ${{ secrets.YARVAN_ANDROID_SIGNING }}
+        run: bash packaging/android/sign.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: installers-android
+          path: |
+            release/yarvan/Yarvan-*-android.apk
+            release/yarvan/Yarvan-Android-Certificate.txt
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    if: github.ref == 'refs/heads/main' && inputs.publish_prerelease
+    needs: [desktop, android]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: installers-*
+          merge-multiple: true
+          path: release/yarvan
+      - name: Publish one new prerelease (no replacing existing assets)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash packaging/publish.sh
