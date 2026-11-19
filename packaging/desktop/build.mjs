@@ -45,8 +45,13 @@ mkdirSync(join(root, "release"), { recursive: true });
 const app = mkdtempSync(join(root, "release", ".yarvan-app-"));
 try {
   cpSync("electron", join(app, "electron"), { recursive: true, filter(source) {
-    return !/\.test\.|\.node-test\.|\.electron\.test\.|speech-helper|recorder-helper|[/\\]OpenMausBot (Speech|Recorder)\.app/.test(source);
+    // Exclude native helper resources, not the JS modules imported by the
+    // main process on every platform (e.g. build-speech-helper.mjs).
+    const path = source.replaceAll("\\", "/");
+    return !/\.test\.|\.node-test\.|\.electron\.test\./.test(path) &&
+      !/\/resources\/(?:speech-helper|recorder-helper|OpenMausBot (?:Speech|Recorder)\.app)/.test(path);
   } });
+  assert(existsSync(join(app, "electron", "build-speech-helper.mjs")), "The Electron speech glue is a required JS module.");
   cpSync("public/app-icon-512.png", join(app, "electron", "resources", "yarvan-icon.png"));
   cpSync("src/locales", join(app, "src", "locales"), { recursive: true, filter: (source) => basename(source) !== "source-hashes.json" });
   writeFileSync(join(app, "package.json"), JSON.stringify({
