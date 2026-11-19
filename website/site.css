@@ -386,3 +386,45 @@ svg{display:block}
 .download-card .text-link{margin-top:8px}
 .download-links{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;margin-top:20px}
 @media(max-width:700px){.download-grid{grid-template-columns:1fr;gap:9px}.download-card{padding:18px}.download-card p{margin-block-end:12px}.download-links .text-link{font-size:13px}}
+
+/* Step-by-step setup lives on the product page, not behind an external link. */
+.install-section{background:var(--paper)}
+.install-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin-block-end:20px}
+.install-head .section-lead{margin:0}
+.install-jumps,.install-followup-links{display:flex;flex-wrap:wrap;gap:8px}
+.install-jumps{flex:none;max-width:100%}
+.install-jumps .pill{min-height:38px;padding-inline:13px;background:var(--surface);font-size:13px}
+.install-jumps .pill:hover{background:var(--green-wash);border-color:var(--accent)}
+.install-check{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;margin-block-end:14px;border:1px solid var(--edge);border-radius:11px;background:var(--green-wash);font-size:14px}
+.install-check>.icon{margin-block-start:.28em;color:var(--accent)}
+.install-link{color:var(--accent);font-weight:650;text-decoration:underline;text-underline-offset:.2em}
+.install-link:hover{text-decoration:underline;text-decoration-thickness:2px}
+.install-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.install-card{min-width:0;border:1px solid var(--edge);border-radius:var(--radius);background:var(--surface);padding:clamp(16px,2.5vw,26px);overflow-wrap:anywhere}
+.install-card:target{border-color:var(--accent)}
+.install-card-head{display:flex;align-items:center;gap:12px;margin-block-end:16px}
+.install-card-head .download-icon{margin:0;flex:none;background:var(--paper)}
+.install-card h3{font-size:20px;font-weight:680}
+.install-meta{color:var(--muted);font-size:13px;margin-block-start:4px}
+.install-steps{display:grid;gap:11px;padding-inline-start:1.5em;color:var(--muted);font-size:15px;line-height:1.75}
+.install-steps li{min-width:0;padding-inline-start:4px}
+.install-steps li::marker{color:var(--accent);font-weight:680}
+.install-steps strong{color:var(--fg);font-weight:680}
+.install-command{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:8px 10px;margin-block-start:7px;border:1px solid var(--edge);border-radius:9px;background:var(--paper);color:var(--fg)}
+.install-command pre{margin:0;min-width:0;align-self:center;text-align:left;font-size:12px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.install-command .pill{flex:none;background:var(--surface);min-height:29px;padding:2px 9px;font-size:12px}
+.install-command .pill:hover{border-color:var(--accent)}
+.install-note{margin-block-start:13px;padding:10px 12px;border-radius:9px;background:var(--paper);color:var(--muted);font-size:13px;line-height:1.65}
+.install-extra{margin-block-start:14px;border-block-start:1px solid var(--edge);font-size:14px;color:var(--muted)}
+.install-extra summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-block:12px 2px;font-weight:650;color:var(--fg)}
+.install-extra summary:hover{color:var(--accent)}
+.install-extra summary .icon{width:15px;height:15px;color:var(--muted)}
+.install-extra[open] summary .icon{transform:rotate(180deg)}
+.install-extra>p:not(.install-note){margin-block-start:9px}
+.install-phone{grid-column:1/-1}
+.install-phone-intro{margin-block-end:13px;color:var(--muted);font-size:15px}
+.install-phone-steps{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(26px,4vw,54px)}
+.install-route{margin-block:7px;padding:6px 9px;border:1px solid var(--edge);border-radius:8px;background:var(--paper);color:var(--fg);font:540 13px/1.65 Inter,system-ui,sans-serif;text-align:left}
+.install-followup{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 16px;margin-block-start:16px;color:var(--muted);font-size:14px}
+.install-followup-links{gap:6px 15px}
+@media(max-width:700px){.install-head{align-items:flex-start;flex-direction:column}.install-grid,.install-phone-steps{grid-template-columns:1fr}.install-steps{font-size:14px}.install-followup-links .text-link{font-size:13px}}

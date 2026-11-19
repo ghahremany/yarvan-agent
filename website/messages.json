@@ -24,6 +24,54 @@
     "oss": { "title": "متن‌باز و قابل بررسی", "body": "سورس، مستندات و آزمون‌ها در GitHub هستند. اگر مشکلی دیدی، با یک نمونهٔ بی‌خطر گزارشش کن.", "credit": "یاروان نسخهٔ مستقلی از بخش متن‌باز OpenMausBot است. کد Enterprise در این نسخه توزیع نمی‌شود." },
     "faq": { "title": "پیش از شروع این‌ها را بدان.", "q1": "از کجا یاروان را نصب کنم؟", "a1": "برای ویندوز و لینوکس، نصاب آزمایشی مناسب دستگاه را از همین صفحه بگیر. APK اندروید همراه است و به میزبان نیاز دارد. اجرای مستقیم از سورس هم ممکن است.", "q2": "آیا برای کار با یاروان حتماً حساب ابری لازم است؟", "a2": "یاروان روی میزبان خودت اجرا می‌شود؛ نیاز به حساب به موتوری بستگی دارد که تنظیم می‌کنی. ارائه‌دهندهٔ ابری متن موردنیاز پاسخ را دریافت می‌کند. برای جست‌وجوی معنایی، Ollama روی همان میزبان اختیاری است.", "q3": "حافظهٔ خاموش یعنی پیام ذخیره نمی‌شود؟", "a3": "نه. این حالت از حافظهٔ مدیریت‌شده، ابزارها و نشست بومی استفاده نمی‌کند، اما پیام‌ها در تاریخچهٔ محلی می‌مانند. فراموش‌کردن یک یادداشت هم اصل پیام را پاک نمی‌کند.", "q4": "پیام تلگرام رمزنگاری سرتاسری دارد؟", "a4": "نه. «خصوصی» یعنی پیام مستقیم متنی، محدود به یک حساب مجاز. پیام و پاسخ از سرویس تلگرام عبور می‌کنند. گروه، فایل و اجرای ابزار فعال نیستند.", "q5": "آموزش مرورگر دقیقاً چه چیزی ضبط می‌کند؟", "a5": "نشانی مبدأ سایت، کلیک تقریبی، جهت اسکرول و استفاده از فیلد. متن تایپ‌شده، تصویر و مسیر کامل URL ضبط نمی‌شوند. پیش‌نویس قابل ویرایش است و خودکار اجرا نمی‌شود." },
     "downloads": {"nav": "دانلود", "download": "دانلود یاروان", "options": "گزینه‌های دریافت نسخه", "title": "یاروان را روی دستگاهت نصب کن.", "subtitle": "نصاب‌های آزمایشی دسکتاپ و نسخهٔ همراه اندروید؛ دانلود مستقیم از GitHub.", "label": "نصاب‌های آزمایشی", "windows": "ویندوز", "windows_hint": "نصاب x64 برای ویندوز ۶۴ بیتی. ناشر در ویندوز تأیید نشده است.", "windows_cta": "دریافت نصاب ویندوز", "linux": "لینوکس", "linux_hint": "برای Ubuntu 24.04 نسخهٔ DEB پیشنهاد می‌شود. AppImage نسخهٔ قابل حمل است.", "linux_cta": "دریافت DEB", "appimage": "دریافت AppImage", "android": "اندروید", "android_hint": "همراه اندروید ۸ به بعد؛ به یاروانِ در حال اجرا روی رایانه یا سرور با HTTPS معتبر وصل می‌شود.", "android_cta": "دریافت APK", "guide": "راهنمای نصب و اتصال گوشی", "sums": "چک‌سام‌های SHA-256", "release": "یادداشت انتشار"},
+    "install": {
+      "nav": "آموزش نصب",
+      "kicker": "قدم‌به‌قدم",
+      "title": "آموزش نصب یاروان",
+      "description": "از نصب روی ویندوز و لینوکس تا اتصال گوشی اندرویدی به فضای کار، مراحل را از همین‌جا دنبال کن.",
+      "platforms": "انتخاب سیستم‌عامل برای آموزش نصب",
+      "verify": "پیش از نصب، هش SHA-256 فایل دانلودی را با",
+      "checksums": "چک‌سام‌های همین انتشار",
+      "verify_end": " مقایسه کن. اگر یکی نبودند، فایل را نصب نکن.",
+      "copy": "کپی",
+      "first_chat": "برای اولین گفت‌وگو، در تنظیمات یاروان یک موتور یا سرویس مدلِ سازگار وصل کن.",
+      "back": "بازگشت به دانلودها",
+      "help": "راهنمای کامل نصب و اتصال",
+      "source": "راه‌اندازی از سورس",
+      "windows": {
+        "meta": "ویندوز ۶۴ بیتی",
+        "verify": "نصاب ویندوز (.exe) را بگیر. در پوشهٔ فایل، PowerShell را باز کن و با این دستور هش را حساب کن:",
+        "setup": "اگر هش با مقدار اعلام‌شده یکی بود، فایل .exe را باز کن و مراحل نصاب را انجام بده.",
+        "open": "از منوی Start، برنامهٔ Yarvan را باز کن. نیازی به نصب Node.js یا pnpm نیست.",
+        "note": "نصاب امضای Authenticode ندارد و ممکن است ویندوز «ناشر ناشناس» نشان دهد. فایل را فقط از انتشار رسمی بگیر و محدودیت امنیتی دستگاه را دور نزن."
+      },
+      "linux": {
+        "meta": "لینوکس ۶۴ بیتی · بستهٔ DEB برای اوبونتو ۲۴٫۰۴",
+        "verify": "بستهٔ DEB را بگیر. در پوشه‌ای که فایل را ذخیره کرده‌ای، ترمینال را باز کن و هش را حساب کن:",
+        "setup": "پس از تطبیق هش، بسته را با APT نصب کن:",
+        "open": "از منوی برنامه‌ها، Yarvan را باز کن. خود برنامه و سرور محلی در بسته‌اند.",
+        "portable": "اجرای نسخهٔ قابل‌حمل AppImage",
+        "portable_verify": "اگر AppImage را گرفته‌ای، در همان پوشه هش این فایل را بررسی کن:",
+        "portable_run": "پس از تطبیق هش، در همان پوشه به فایل مجوز اجرا بده و آن را باز کن:",
+        "portable_note": "اگر AppImage روی اوبونتو به‌دلیل محدودیت sandbox باز نشد، از بستهٔ DEB استفاده کن. sandbox یا AppArmor را خاموش نکن."
+      },
+      "android": {
+        "title": "نصب و اتصال اندروید",
+        "meta": "اندروید ۸ به بعد · برنامهٔ همراه",
+        "host": "گوشی رابط چت و مدیریت است، نه میزبان عامل. یاروان باید روی رایانه یا سرور روشن بماند.",
+        "apk_title": "APK را روی گوشی نصب کن",
+        "apk": "APK را از بخش دانلود بگیر. برای بررسی هش روی رایانه، همین دستور ویندوز یا لینوکس را با نام فایل APK اجرا کن. اگر هش درست بود، فایل را روی گوشی باز کن. اگر اندروید درخواست کرد، اجازهٔ نصب را فقط موقتاً به برنامه‌ای بده که فایل را باز می‌کند.",
+        "network_title": "اتصال HTTPS را آماده کن",
+        "network": "برای دسکتاپ، گوشی و رایانه را به یک شبکهٔ خصوصی Tailscale وصل کن و MagicDNS و HTTPS Certificates را فعال کن. اگر میزبان از قبل نشانی HTTPS معتبر و قابل‌دسترسی برای گوشی دارد، Tailscale الزامی نیست.",
+        "pair_title": "پیوند جفت‌سازی را از میزبان بگیر",
+        "pair": "در یاروانِ رایانه، اتصال را از این مسیر فعال کن:",
+        "link_before": "وقتی نشانی HTTPS آماده شد، از",
+        "link_after": "پیوند را بگیر. کد شش‌رقمی یا QR بخش «Pair a phone» برای این برنامه نیست.",
+        "open_title": "فضای کار را باز کن",
+        "open": "در «همراه یاروان» پیوند HTTPS را وارد کن، «باز کردن فضای کار» را بزن و جفت‌سازی را در صفحهٔ بازشده تأیید کن.",
+        "note": "پیوند یک‌بارمصرف را خصوصی نگه دار. نشانی این صفحه، localhost و HTTP جای نشانی HTTPS میزبان را نمی‌گیرند."
+      }
+    },
     "end": { "title": "اولین باتت را بساز.", "body": "با یک کار کوچک شروع کن. سورس، دستورهای اجرا و راهنما همه در دسترس‌اند.", "product": "محصول", "resources": "منابع", "related": "پروژه", "tagline": "تیم دستیارهای هوش مصنوعی، روی دستگاه خودت.", "upstream": "انتساب به OpenMausBot", "privacy": "این صفحه ابزار تحلیل بازدید ندارد. نمایش نمونه فقط در مرورگر انجام می‌شود." }
   },
   "en": {
@@ -51,6 +99,54 @@
     "oss": { "title": "Open source and open to review", "body": "The source, docs and tests are on GitHub. If you hit a problem, report it with a safe example.", "credit": "Yarvan is an independent derivative of the open-source edition of OpenMausBot. It does not distribute Enterprise code." },
     "faq": { "title": "What to know before getting started.", "q1": "Where do I install Yarvan?", "a1": "Choose a beta installer for Windows or Linux. The Android APK is a companion and needs a running host. You can still build or run the app from source.", "q2": "Do I need a cloud account?", "a2": "Yarvan runs on your host. Whether you need an account depends on the engine you configure. A cloud provider receives the text needed for its replies. Ollama on the same host is optional for semantic retrieval.", "q3": "Does Memory off stop messages from being saved?", "a3": "No. It skips managed memory, tools and native session reuse, but messages remain in local history. Forgetting a note does not delete the original message either.", "q4": "Are Telegram messages end-to-end encrypted?", "a4": "No. Private means a direct text DM from one allowed account. Messages pass through Telegram. Groups, files and tool use are not supported.", "q5": "What does browser teaching record?", "a5": "It records the site origin, approximate clicks, scroll direction, and field-use markers. It does not capture typed values, screenshots, or full URL paths. You can edit the draft; it is never replayed automatically." },
     "downloads": {"nav": "Download", "download": "Download Yarvan", "options": "Download options", "title": "Install Yarvan on your device.", "subtitle": "Desktop beta installers and the Android companion. All downloads come from GitHub.", "label": "Beta installers", "windows": "Windows", "windows_hint": "x64 setup for 64-bit Windows. The installer is not Authenticode-signed.", "windows_cta": "Download Windows setup", "linux": "Linux", "linux_hint": "Choose the DEB for Ubuntu 24.04. AppImage is the portable option.", "linux_cta": "Download DEB", "appimage": "Download AppImage", "android": "Android", "android_hint": "Companion for Android 8+. Connect it to Yarvan running on a computer or server at a trusted HTTPS address.", "android_cta": "Download APK", "guide": "Install and pair a phone", "sums": "SHA-256 checksums", "release": "Release notes"},
+    "install": {
+      "nav": "Install guide",
+      "kicker": "Step by step",
+      "title": "How to install Yarvan",
+      "description": "Install Yarvan on Windows or Linux, or connect the Android companion to your workspace. Follow the steps here.",
+      "platforms": "Choose your platform for installation steps",
+      "verify": "Before installing, compare your download’s SHA-256 hash with",
+      "checksums": "the release checksums",
+      "verify_end": ". If they don’t match, don’t install the file.",
+      "copy": "Copy",
+      "first_chat": "For your first chat, connect a supported engine or model provider in Yarvan’s settings.",
+      "back": "Back to downloads",
+      "help": "Full installation and pairing guide",
+      "source": "Run from source",
+      "windows": {
+        "meta": "64-bit Windows",
+        "verify": "Download the Windows setup (.exe). Open PowerShell in the folder with the file and calculate its hash:",
+        "setup": "If the hash matches, open the .exe file and follow the setup prompts.",
+        "open": "Open Yarvan from the Start menu. You don’t need to install Node.js or pnpm.",
+        "note": "This installer is not Authenticode-signed, so Windows may show “Unknown publisher.” Only use the official release and don’t bypass device security policies."
+      },
+      "linux": {
+        "meta": "64-bit Linux · DEB for Ubuntu 24.04",
+        "verify": "Download the DEB package. Open a terminal in the folder with the file and calculate its hash:",
+        "setup": "Once the hash matches, install it with APT:",
+        "open": "Open Yarvan from the apps menu. The app and its local server are included.",
+        "portable": "Run the portable AppImage",
+        "portable_verify": "If you downloaded the AppImage, check its hash in the folder with the file:",
+        "portable_run": "Once the hash matches, make it executable and run it from that folder:",
+        "portable_note": "If sandbox restrictions prevent the AppImage from opening on Ubuntu, use the DEB instead. Don’t disable the sandbox or AppArmor."
+      },
+      "android": {
+        "title": "Install and pair on Android",
+        "meta": "Android 8+ · Companion app",
+        "host": "The phone is a chat and management client. Yarvan itself must stay running on a computer or server.",
+        "apk_title": "Install the APK on your phone",
+        "apk": "Download the APK. On your computer, use the Windows or Linux checksum command above with the APK filename. If the hash matches, open the file on your phone. If Android asks, temporarily allow installation only for the app you used to open it.",
+        "network_title": "Set up HTTPS access",
+        "network": "For desktop, join the same private Tailscale network on your phone and computer. Enable MagicDNS and HTTPS Certificates. Tailscale is optional if the host already has a trusted HTTPS address your phone can reach.",
+        "pair_title": "Get a pairing link from the host",
+        "pair": "In the Yarvan desktop app, enable the connection under:",
+        "link_before": "When the HTTPS address is ready, use",
+        "link_after": "to get the link. Don’t use the six-digit code or QR from “Pair a phone.”",
+        "open_title": "Open the workspace",
+        "open": "Paste the HTTPS link into Yarvan Companion, tap Open workspace, then confirm pairing on the screen that opens.",
+        "note": "Keep the one-time link private. This product page, localhost, and plain HTTP are not your host’s HTTPS address."
+      }
+    },
     "end": { "title": "Build your first bot.", "body": "Start with one useful task. The source, setup commands and guides are ready when you are.", "product": "Product", "resources": "Resources", "related": "Project", "tagline": "Your team of AI agents, on your own machine.", "upstream": "OpenMausBot attribution", "privacy": "No site analytics. The sample preview runs entirely in your browser." }
   }
 }

@@ -75,7 +75,7 @@
       <a class="brand" href="#top" aria-label="{{ui.home}}" data-label="ui.home"><svg aria-hidden="true"><use href="#mark"/></svg><span data-i="ui.brand">{{ui.brand}}</span></a>
       <div class="nav-right">
         <div class="nav-links">
-          <a href="#quickstart" data-i="ui.start">{{ui.start}}</a>
+          <a href="#install" data-i="install.nav">{{install.nav}}</a>
           <a href="#features" data-i="ui.features">{{ui.features}}</a>
           <a href="#examples" data-i="ui.examples">{{ui.examples}}</a>
           <a href="#faq" data-i="ui.faq">{{ui.faq}}</a>
@@ -88,7 +88,7 @@
         <details class="nav-menu dropdown">
           <summary class="pill icon-button" aria-label="{{ui.menu}}" data-label="ui.menu"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></summary>
           <div class="drop-panel">
-            <a href="#download" data-i="downloads.download">{{downloads.download}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a>
+            <a href="#download" data-i="downloads.download">{{downloads.download}}</a><a href="#install" data-i="install.nav">{{install.nav}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a>
             <a href="#examples" data-i="ui.examples">{{ui.examples}}</a><a href="#faq" data-i="ui.faq">{{ui.faq}}</a>
             <a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a><a href="{{repo}}">GitHub</a>
           </div>
@@ -124,7 +124,7 @@
               </div>
             </details>
           </div>
-          <a class="pill hero-secondary" href="#quickstart" data-i="ui.start">{{ui.start}}</a>
+          <a class="pill hero-secondary" href="#install" data-i="install.nav">{{install.nav}}</a>
         </div>
         <p data-i="hero.description">{{hero.description}}</p>
       </div>
@@ -178,7 +178,100 @@
           <article class="download-card"><div class="download-icon"><svg class="icon" aria-hidden="true"><use href="#terminal"/></svg></div><h3 data-i="downloads.linux">{{downloads.linux}}</h3><p data-i="downloads.linux_hint">{{downloads.linux_hint}}</p><a class="pill solid" href="{{installer.assets}}Yarvan-{{installer.version}}-linux-amd64.deb"><span data-i="downloads.linux_cta">{{downloads.linux_cta}}</span><code dir="ltr">.deb</code></a><a class="text-link" href="{{installer.assets}}Yarvan-{{installer.version}}-linux-x86_64.AppImage" data-i="downloads.appimage">{{downloads.appimage}}</a></article>
           <article class="download-card"><div class="download-icon"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M10 18h4M10 7l2 2 2-2m-2 2v4"/></svg></div><h3 data-i="downloads.android">{{downloads.android}}</h3><p data-i="downloads.android_hint">{{downloads.android_hint}}</p><a class="pill solid" href="{{installer.assets}}Yarvan-{{installer.version}}-android.apk"><span data-i="downloads.android_cta">{{downloads.android_cta}}</span><code dir="ltr">.apk</code></a></article>
         </div>
-        <div class="download-links"><a class="text-link" href="{{repo}}/blob/main/docs/yarvan/install-fa.md" data-install-guide data-i="downloads.guide">{{downloads.guide}}</a><a class="text-link" href="{{installer.assets}}SHA256SUMS.txt" data-i="downloads.sums">{{downloads.sums}}</a><a class="text-link" href="{{installer.release}}" data-i="downloads.release">{{downloads.release}}</a></div>
+        <div class="download-links"><a class="text-link" href="#install" data-i="downloads.guide">{{downloads.guide}}</a><a class="text-link" href="{{installer.assets}}SHA256SUMS.txt" data-i="downloads.sums">{{downloads.sums}}</a><a class="text-link" href="{{installer.release}}" data-i="downloads.release">{{downloads.release}}</a></div>
+      </div>
+    </section>
+
+    <section id="install" class="band install-section" aria-labelledby="install-title">
+      <div class="wrap">
+        <div class="install-head">
+          <div class="section-lead">
+            <span class="eyebrow" data-i="install.kicker">{{install.kicker}}</span>
+            <h2 id="install-title" data-i="install.title">{{install.title}}</h2>
+            <p data-i="install.description">{{install.description}}</p>
+          </div>
+          <nav class="install-jumps" aria-label="{{install.platforms}}" data-label="install.platforms">
+            <a class="pill" href="#install-windows" data-i="downloads.windows">{{downloads.windows}}</a>
+            <a class="pill" href="#install-linux" data-i="downloads.linux">{{downloads.linux}}</a>
+            <a class="pill" href="#install-android" data-i="downloads.android">{{downloads.android}}</a>
+          </nav>
+        </div>
+        <div class="install-check">
+          <svg class="icon" aria-hidden="true"><use href="#shield"/></svg>
+          <p><span data-i="install.verify">{{install.verify}}</span> <a class="install-link" href="{{installer.assets}}SHA256SUMS.txt" data-i="install.checksums">{{install.checksums}}</a><span data-i="install.verify_end">{{install.verify_end}}</span></p>
+        </div>
+        <div class="install-grid">
+          <article class="install-card" id="install-windows" aria-labelledby="install-windows-title">
+            <header class="install-card-head">
+              <span class="download-icon"><svg class="icon" aria-hidden="true"><use href="#screen"/></svg></span>
+              <div><h3 id="install-windows-title" data-i="downloads.windows">{{downloads.windows}}</h3><p class="install-meta" data-i="install.windows.meta">{{install.windows.meta}}</p></div>
+            </header>
+            <ol class="install-steps">
+              <li>
+                <p data-i="install.windows.verify">{{install.windows.verify}}</p>
+                <div class="install-command"><pre id="install-win-hash" dir="ltr"><code>Get-FileHash .\Yarvan-{{installer.version}}-windows-x64-setup.exe -Algorithm SHA256</code></pre><button class="pill small-button" type="button" data-copy="install-win-hash" data-i="install.copy" hidden>{{install.copy}}</button></div>
+              </li>
+              <li data-i="install.windows.setup">{{install.windows.setup}}</li>
+              <li data-i="install.windows.open">{{install.windows.open}}</li>
+            </ol>
+            <p class="install-note" data-i="install.windows.note">{{install.windows.note}}</p>
+          </article>
+
+          <article class="install-card" id="install-linux" aria-labelledby="install-linux-title">
+            <header class="install-card-head">
+              <span class="download-icon"><svg class="icon" aria-hidden="true"><use href="#terminal"/></svg></span>
+              <div><h3 id="install-linux-title" data-i="downloads.linux">{{downloads.linux}}</h3><p class="install-meta" data-i="install.linux.meta">{{install.linux.meta}}</p></div>
+            </header>
+            <ol class="install-steps">
+              <li>
+                <p data-i="install.linux.verify">{{install.linux.verify}}</p>
+                <div class="install-command"><pre id="install-deb-hash" dir="ltr"><code>sha256sum Yarvan-{{installer.version}}-linux-amd64.deb</code></pre><button class="pill small-button" type="button" data-copy="install-deb-hash" data-i="install.copy" hidden>{{install.copy}}</button></div>
+              </li>
+              <li>
+                <p data-i="install.linux.setup">{{install.linux.setup}}</p>
+                <div class="install-command"><pre id="install-deb-cmd" dir="ltr"><code>sudo apt install ./Yarvan-{{installer.version}}-linux-amd64.deb</code></pre><button class="pill small-button" type="button" data-copy="install-deb-cmd" data-i="install.copy" hidden>{{install.copy}}</button></div>
+              </li>
+              <li data-i="install.linux.open">{{install.linux.open}}</li>
+            </ol>
+            <details class="install-extra">
+              <summary><span data-i="install.linux.portable">{{install.linux.portable}}</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+              <p data-i="install.linux.portable_verify">{{install.linux.portable_verify}}</p>
+              <div class="install-command"><pre id="install-appimage-hash" dir="ltr"><code>sha256sum Yarvan-{{installer.version}}-linux-x86_64.AppImage</code></pre><button class="pill small-button" type="button" data-copy="install-appimage-hash" data-i="install.copy" hidden>{{install.copy}}</button></div>
+              <p data-i="install.linux.portable_run">{{install.linux.portable_run}}</p>
+              <div class="install-command"><pre id="install-appimage-cmd" dir="ltr"><code>chmod +x Yarvan-{{installer.version}}-linux-x86_64.AppImage
+./Yarvan-{{installer.version}}-linux-x86_64.AppImage</code></pre><button class="pill small-button" type="button" data-copy="install-appimage-cmd" data-i="install.copy" hidden>{{install.copy}}</button></div>
+              <p class="install-note" data-i="install.linux.portable_note">{{install.linux.portable_note}}</p>
+            </details>
+          </article>
+
+          <article class="install-card install-phone" id="install-android" aria-labelledby="install-android-title">
+            <header class="install-card-head">
+              <span class="download-icon"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M10 18h4M10 7l2 2 2-2m-2 2v4"/></svg></span>
+              <div><h3 id="install-android-title" data-i="install.android.title">{{install.android.title}}</h3><p class="install-meta" data-i="install.android.meta">{{install.android.meta}}</p></div>
+            </header>
+            <p class="install-phone-intro" data-i="install.android.host">{{install.android.host}}</p>
+            <ol class="install-steps install-phone-steps">
+              <li><strong data-i="install.android.apk_title">{{install.android.apk_title}}</strong><p data-i="install.android.apk">{{install.android.apk}}</p></li>
+              <li><strong data-i="install.android.network_title">{{install.android.network_title}}</strong><p data-i="install.android.network">{{install.android.network}}</p></li>
+              <li>
+                <strong data-i="install.android.pair_title">{{install.android.pair_title}}</strong>
+                <p data-i="install.android.pair">{{install.android.pair}}</p>
+                <p class="install-route" dir="ltr" lang="en">Settings → Phone &amp; devices → Your other computers</p>
+                <p><span data-i="install.android.link_before">{{install.android.link_before}}</span> <bdi lang="en" dir="ltr">Pair a computer → Copy link</bdi> <span data-i="install.android.link_after">{{install.android.link_after}}</span></p>
+              </li>
+              <li><strong data-i="install.android.open_title">{{install.android.open_title}}</strong><p data-i="install.android.open">{{install.android.open}}</p></li>
+            </ol>
+            <p class="install-note" data-i="install.android.note">{{install.android.note}}</p>
+          </article>
+        </div>
+        <div class="install-followup">
+          <p data-i="install.first_chat">{{install.first_chat}}</p>
+          <div class="install-followup-links">
+            <a class="text-link" href="#download" data-i="install.back">{{install.back}}</a>
+            <a class="text-link" href="{{repo}}/blob/main/docs/yarvan/install-fa.md" data-install-guide data-i="install.help">{{install.help}}</a>
+            <a class="text-link" href="#quickstart" data-i="install.source">{{install.source}}</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -286,7 +379,7 @@ OMB_DATA_DIR="$HOME/.yarvan" OMB_DISABLE_ANNOUNCEMENTS=1 pnpm dev:server</code><
   <footer class="site-footer"><div class="wrap">
     <div class="footer-grid">
       <div class="about"><a class="brand" href="#top" aria-label="{{ui.home}}" data-label="ui.home"><svg aria-hidden="true"><use href="#mark"/></svg><span data-i="ui.brand">{{ui.brand}}</span></a><p data-i="end.tagline">{{end.tagline}}</p></div>
-      <div><strong data-i="end.product">{{end.product}}</strong><a href="#features" data-i="ui.features">{{ui.features}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#examples" data-i="ui.examples">{{ui.examples}}</a></div>
+      <div><strong data-i="end.product">{{end.product}}</strong><a href="#install" data-i="install.nav">{{install.nav}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#examples" data-i="ui.examples">{{ui.examples}}</a></div>
       <div><strong data-i="end.resources">{{end.resources}}</strong><a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a><a href="#faq" data-i="ui.faq">{{ui.faq}}</a><a href="{{repo}}/blob/main/LICENSE" data-i="ui.license">{{ui.license}}</a></div>
       <div><strong data-i="end.related">{{end.related}}</strong><a href="{{repo}}">GitHub</a><a href="{{repo}}/blob/main/UPSTREAM.md" data-i="end.upstream">{{end.upstream}}</a><a href="{{repo}}/tree/v0.1.0" dir="ltr">v0.1.0</a></div>
     </div>

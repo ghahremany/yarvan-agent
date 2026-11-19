@@ -135,7 +135,7 @@
       live.textContent = t(copied ? 'ui.copied' : 'ui.select');
       button.textContent = t(copied ? 'ui.copied' : 'ui.selected');
       clearTimeout(copyTimers.get(button));
-      copyTimers.set(button, setTimeout(() => { button.textContent = t('ui.copy'); }, 3100));
+      copyTimers.set(button, setTimeout(() => { button.textContent = t(button.dataset.i || 'ui.copy'); }, 3100));
     });
   }
 
