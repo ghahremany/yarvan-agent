@@ -12,6 +12,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = "https://github.com/ghahremany/yarvan-agent"
 HOMEPAGE = "https://ghahremany.github.io/yarvan-agent/"
+# The website only advertises versions whose installer assets were independently verified.
+INSTALLER_VERSION = "0.1.1-beta.1"
 
 
 def data_uri(path, mime):
@@ -46,6 +48,11 @@ def render():
         **messages["fa"],
         "repo": REPO,
         "homepage": HOMEPAGE,
+        "installer": {
+            "version": INSTALLER_VERSION,
+            "release": REPO + "/releases/tag/v" + INSTALLER_VERSION,
+            "assets": REPO + "/releases/download/v" + INSTALLER_VERSION + "/",
+        },
         "guide": REPO + "/blob/main/docs/yarvan/guide-fa.md",
         "icon": data_uri(HERE.parent / "public" / "app-icon.svg", "image/svg+xml"),
     }

@@ -2,7 +2,7 @@
 
 [Product page](https://ghahremany.github.io/yarvan-agent/?lang=en)
 
-Yarvan is an independent, Apache-2.0, local-first derivative of the open-source edition of OpenMausBot. Run a roster of agents on a computer you control and choose the model behind each bot. This is a source release, not a vendor-hosted service or a desktop installer. [فارسی](README.md)
+Yarvan is an independent, Apache-2.0, local-first derivative of the open-source edition of OpenMausBot. Run a roster of agents on a computer you control and choose the model behind each bot. This is not a vendor-hosted service. [فارسی](README.md)
 
 | Addition | How to use it |
 | :--- | :--- |
@@ -11,7 +11,11 @@ Yarvan is an independent, Apache-2.0, local-first derivative of the open-source 
 | Private Telegram | Run an owner-allowlisted text DM bridge to a dedicated, memory-disabled bot. No owner-privileged key, groups, connected tools, or import from internal chats. |
 | Teach in a browser | In a temporary browser, take control and record click, scroll and field-use markers. Review and edit the skill draft. It saves disabled, with no automatic replay or capture of typed values. |
 
-## Run
+## Install
+
+[Download a beta installer](https://ghahremany.github.io/yarvan-agent/?lang=en#download): Windows x64 setup, Linux x64 DEB or AppImage, and the Android 8+ companion APK. On Ubuntu 24.04, use the DEB. The companion connects to a running Yarvan host over trusted HTTPS; it does not run agents on the phone. [Install and pair a device](docs/yarvan/install.md) · [GitHub release and checksums](https://github.com/ghahremany/yarvan-agent/releases/tag/v0.1.1-beta.1)
+
+## Run from source
 
 Use Node.js 24 or later and pnpm 10.33.0. From the source directory:
 

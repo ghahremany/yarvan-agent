@@ -48,7 +48,7 @@
     <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
     <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-    <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
     <symbol id="code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
     <symbol id="screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 17v4m-4 0h8"/></symbol>
     <symbol id="terminal" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="m6 8 4 4-4 4m7 0h5"/></symbol>
@@ -82,13 +82,13 @@
           <a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a>
         </div>
         <a class="pill nav-github" href="{{repo}}" dir="ltr"><svg class="icon filled" aria-hidden="true"><use href="#github"/></svg> GitHub</a>
-        <a class="pill solid nav-cta" href="#quickstart" data-i="ui.getStarted">{{ui.getStarted}}</a>
+        <a class="pill solid nav-cta" href="#download" data-i="downloads.nav">{{downloads.nav}}</a>
         <button type="button" id="theme" class="pill icon-button" aria-label="{{ui.dark}}" data-label="ui.dark" hidden><svg class="icon moon" aria-hidden="true"><use href="#moon"/></svg><svg class="icon sun" aria-hidden="true"><use href="#sun"/></svg></button>
         <a class="pill locale-button" id="language" href="?lang=en" lang="en" hreflang="en" aria-label="Read in English" hidden>EN</a>
         <details class="nav-menu dropdown">
           <summary class="pill icon-button" aria-label="{{ui.menu}}" data-label="ui.menu"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></summary>
           <div class="drop-panel">
-            <a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a>
+            <a href="#download" data-i="downloads.download">{{downloads.download}}</a><a href="#quickstart" data-i="ui.start">{{ui.start}}</a><a href="#features" data-i="ui.features">{{ui.features}}</a>
             <a href="#examples" data-i="ui.examples">{{ui.examples}}</a><a href="#faq" data-i="ui.faq">{{ui.faq}}</a>
             <a href="{{guide}}" data-doc data-i="ui.docs">{{ui.docs}}</a><a href="{{repo}}">GitHub</a>
           </div>
@@ -113,10 +113,15 @@
         <h1 id="hero-title"><span data-i="hero.before">{{hero.before}}</span> <em data-i="hero.accent">{{hero.accent}}</em> <span data-i="hero.after">{{hero.after}}</span></h1>
         <div class="hero-actions">
           <div class="split-button">
-            <a class="pill solid" href="{{repo}}/archive/refs/tags/v0.1.0.zip"><svg class="icon" aria-hidden="true"><use href="#download"/></svg><span data-i="ui.source">{{ui.source}}</span></a>
+            <a class="pill solid" href="#download"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg><span data-i="downloads.download">{{downloads.download}}</span></a>
             <details class="source-menu dropdown">
-              <summary class="pill solid" aria-label="{{ui.sourceOptions}}" data-label="ui.sourceOptions"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
-              <div class="drop-panel"><a href="{{repo}}/archive/refs/tags/v0.1.0.zip" data-i="ui.zip">{{ui.zip}}</a><a href="{{repo}}/tree/v0.1.0" data-i="ui.tag">{{ui.tag}}</a><a href="{{repo}}" data-i="ui.repo">{{ui.repo}}</a></div>
+              <summary class="pill solid" aria-label="{{downloads.options}}" data-label="downloads.options"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+              <div class="drop-panel">
+                <a href="{{installer.assets}}Yarvan-{{installer.version}}-windows-x64-setup.exe">Windows · x64</a>
+                <a href="{{installer.assets}}Yarvan-{{installer.version}}-linux-amd64.deb">Linux · DEB</a>
+                <a href="{{installer.assets}}Yarvan-{{installer.version}}-android.apk">Android · APK</a>
+                <a href="{{repo}}/archive/refs/tags/v{{installer.version}}.zip" data-i="ui.zip">{{ui.zip}}</a>
+              </div>
             </details>
           </div>
           <a class="pill hero-secondary" href="#quickstart" data-i="ui.start">{{ui.start}}</a>
@@ -165,11 +170,23 @@
       </div></div>
     </div>
 
+    <section class="band" id="download" aria-labelledby="download-title">
+      <div class="wrap">
+        <div class="section-lead center"><span class="eyebrow"><bdi data-i="downloads.label">{{downloads.label}}</bdi> · <code dir="ltr">v{{installer.version}}</code></span><h2 id="download-title" data-i="downloads.title">{{downloads.title}}</h2><p data-i="downloads.subtitle">{{downloads.subtitle}}</p></div>
+        <div class="download-grid">
+          <article class="download-card"><div class="download-icon"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 5 21 2v20L3 19Zm9-.8v15.6M3 12h18"/></svg></div><h3 data-i="downloads.windows">{{downloads.windows}}</h3><p data-i="downloads.windows_hint">{{downloads.windows_hint}}</p><a class="pill solid" href="{{installer.assets}}Yarvan-{{installer.version}}-windows-x64-setup.exe"><span data-i="downloads.windows_cta">{{downloads.windows_cta}}</span><code dir="ltr">.exe</code></a></article>
+          <article class="download-card"><div class="download-icon"><svg class="icon" aria-hidden="true"><use href="#terminal"/></svg></div><h3 data-i="downloads.linux">{{downloads.linux}}</h3><p data-i="downloads.linux_hint">{{downloads.linux_hint}}</p><a class="pill solid" href="{{installer.assets}}Yarvan-{{installer.version}}-linux-amd64.deb"><span data-i="downloads.linux_cta">{{downloads.linux_cta}}</span><code dir="ltr">.deb</code></a><a class="text-link" href="{{installer.assets}}Yarvan-{{installer.version}}-linux-x86_64.AppImage" data-i="downloads.appimage">{{downloads.appimage}}</a></article>
+          <article class="download-card"><div class="download-icon"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M10 18h4M10 7l2 2 2-2m-2 2v4"/></svg></div><h3 data-i="downloads.android">{{downloads.android}}</h3><p data-i="downloads.android_hint">{{downloads.android_hint}}</p><a class="pill solid" href="{{installer.assets}}Yarvan-{{installer.version}}-android.apk"><span data-i="downloads.android_cta">{{downloads.android_cta}}</span><code dir="ltr">.apk</code></a></article>
+        </div>
+        <div class="download-links"><a class="text-link" href="{{repo}}/blob/main/docs/yarvan/install-fa.md" data-install-guide data-i="downloads.guide">{{downloads.guide}}</a><a class="text-link" href="{{installer.assets}}SHA256SUMS.txt" data-i="downloads.sums">{{downloads.sums}}</a><a class="text-link" href="{{installer.release}}" data-i="downloads.release">{{downloads.release}}</a></div>
+      </div>
+    </section>
+
     <section id="quickstart" class="band" aria-labelledby="quick-title">
       <div class="wrap">
         <div class="section-lead start-lead"><span class="eyebrow" data-i="quick.kicker">{{quick.kicker}}</span><h2 id="quick-title" data-i="quick.title">{{quick.title}}</h2><p data-i="quick.description">{{quick.description}}</p></div>
         <ol class="steps">
-          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-stack" dir="ltr"><svg class="mini-mark"><use href="#mark"/></svg><div><strong>Yarvan</strong><small>v0.1.0 · ZIP</small></div><svg class="icon end-art"><use href="#download"/></svg></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">1</span><div><h3 data-i="quick.one.title">{{quick.one.title}}</h3><p data-i="quick.one.body">{{quick.one.body}}</p></div></div></li>
+          <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-stack" dir="ltr"><svg class="mini-mark"><use href="#mark"/></svg><div><strong>Yarvan</strong><small>v0.1.0 · ZIP</small></div><svg class="icon end-art"><use href="#icon-download"/></svg></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">1</span><div><h3 data-i="quick.one.title">{{quick.one.title}}</h3><p data-i="quick.one.body">{{quick.one.body}}</p></div></div></li>
           <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-terminal" dir="ltr"><span class="window-dots"><i></i><i></i><i></i></span><code><b>›</b> pnpm dev:server<br><b>›</b> <i>127.0.0.1</i><span class="blink"> ▍</span></code></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">2</span><div><h3 data-i="quick.two.title">{{quick.two.title}}</h3><p data-i="quick.two.body">{{quick.two.body}}</p></div></div></li>
           <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-stack" dir="ltr"><svg class="avatar purple"><use href="#agent"/></svg><div><strong>Claude Code</strong><small>Text engine</small></div><svg class="icon end-art"><use href="#check"/></svg></div></div><div class="step-copy"><span class="step-number" aria-hidden="true">3</span><div><h3 data-i="quick.three.title">{{quick.three.title}}</h3><p data-i="quick.three.body">{{quick.three.body}}</p></div></div></li>
           <li class="step"><div class="step-art" aria-hidden="true"><div class="mini-dialog"><span></span><span></span><span><i></i><i></i><i></i></span></div><svg class="mini-chat avatar teal"><use href="#agent"/></svg></div><div class="step-copy"><span class="step-number" aria-hidden="true">4</span><div><h3 data-i="quick.four.title">{{quick.four.title}}</h3><p data-i="quick.four.body">{{quick.four.body}}</p></div></div></li>
@@ -262,7 +279,7 @@ OMB_DATA_DIR="$HOME/.yarvan" OMB_DISABLE_ANNOUNCEMENTS=1 pnpm dev:server</code><
     <section class="band end-cta" aria-labelledby="end-title"><div class="wrap">
       <div class="final-mark" aria-hidden="true"><svg class="avatar purple"><use href="#agent"/></svg><svg class="avatar green"><use href="#mark"/></svg><svg class="avatar blue"><use href="#agent"/></svg></div>
       <h2 id="end-title" data-i="end.title">{{end.title}}</h2><p data-i="end.body">{{end.body}}</p>
-      <div class="hero-actions"><a class="pill solid" href="#quickstart" data-i="ui.getStarted">{{ui.getStarted}}</a><a class="pill" href="{{repo}}/archive/refs/tags/v0.1.0.zip" data-i="ui.source">{{ui.source}}</a></div>
+      <div class="hero-actions"><a class="pill solid" href="#download" data-i="downloads.download">{{downloads.download}}</a><a class="pill" href="{{repo}}/archive/refs/tags/v{{installer.version}}.zip" data-i="ui.source">{{ui.source}}</a></div>
     </div></section>
   </main>
 

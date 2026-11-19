@@ -59,6 +59,9 @@
     document.querySelectorAll('[data-doc]').forEach((el) => {
       el.href = repo + (rtl ? '/blob/main/docs/yarvan/guide-fa.md' : '/blob/main/README.en.md');
     });
+    document.querySelectorAll('[data-install-guide]').forEach((el) => {
+      el.href = repo + (rtl ? '/blob/main/docs/yarvan/install-fa.md' : '/blob/main/docs/yarvan/install.md');
+    });
     const other = rtl ? 'en' : 'fa';
     language.textContent = rtl ? 'EN' : 'فا';
     language.lang = other;
